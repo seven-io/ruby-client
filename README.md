@@ -1,6 +1,6 @@
-![](https://www.sms77.io/wp-content/uploads/2019/07/sms77-Logo-400x79.png "Sms77.io Logo")
+![Sms77.io Logo](https://www.sms77.io/wp-content/uploads/2019/07/sms77-Logo-400x79.png "Sms77.io Logo")
 
-# Sms77.io SMS Gateway API Client
+# Ruby Client for the Sms77.io SMS Gateway API
 
 ## Installation
 
@@ -9,7 +9,9 @@
 ### Usage
 
 ```ruby
-client = Sms77::Client.new(api_key: ENV['SMS77_API_KEY'])
-balance = client.get(url: '/api/balance')
-puts balance.inspect
+require 'sms77'
+
+client = Sms77::Client.new(ENV['SMS77_API_KEY'], Faraday.new(Sms77::Client::BASE_URI))
+
+puts "Balance: #{client.balance.body}"
 ```

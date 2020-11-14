@@ -6,7 +6,7 @@ require 'sms77/version'
 Gem::Specification.new do |spec|
   spec.name = 'sms77'
   spec.version = Sms77::VERSION.dup
-  spec.summary = 'Official Sms77.io API Client for Ruby'
+  spec.summary = 'Official API Client for the Sms77.io SMS Gateway'
   spec.description = 'Send SMS & Text2Voice messages via the Sms77.io SMS Gateway.'
   spec.authors = ['sms77 e.K.']
   spec.email = ['support@sms77.io']
