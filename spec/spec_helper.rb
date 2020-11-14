@@ -21,7 +21,7 @@ end
 class Helper
   @is_http = ENV.key?('TEST_HTTP')
   @stubs = Faraday::Adapter::Test::Stubs.new
-  @conn = Faraday.new(Sms77::Client::BASE_URI) do |b|
+  @conn = Faraday.new do |b|
     b.adapter(:test, @stubs) unless @is_http
   end
   @client = Sms77::Client.new(ENV['SMS77_DUMMY_API_KEY'], @conn, 'ruby-test')

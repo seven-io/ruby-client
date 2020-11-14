@@ -11,7 +11,7 @@
 ```ruby
 require 'sms77'
 
-client = Sms77::Client.new(ENV['SMS77_API_KEY'], Faraday.new(Sms77::Client::BASE_URI))
+client = Sms77::Client.new(ENV['SMS77_API_KEY'])
 
 puts "Balance: #{client.balance.body}"
 ```

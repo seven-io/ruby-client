@@ -9,10 +9,12 @@ require 'sms77/header'
 
 module Sms77
   class Client
-    def initialize(api_key, conn, sent_with = 'ruby')
+    def initialize(api_key, conn = Faraday.new, sent_with = 'ruby')
       @api_key = api_key
       @conn = conn
       @sent_with = sent_with
+
+      conn.url_prefix = Sms77::Client::BASE_URI
 
       raise 'missing api_key in config' if !@api_key || @api_key.empty?
       raise 'missing conn in config' unless @conn
