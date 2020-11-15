@@ -7,21 +7,7 @@ require 'json'
 
 RSpec.describe Sms77, 'lookup' do
   def request(type, stub, extra_args = {})
-    Helper.stubs.get("/api/#{Sms77::Endpoint::LOOKUP}") { |_env| [200, {}, JSON.generate(stub)] } unless Helper.is_http
-
-    response = Helper.client.lookup({ type: type, number: '+491771783130' }.merge(extra_args))
-
-    expect(response.class).to eq(Faraday::Response)
-
-    body = response.body
-
-    begin
-      body = JSON.parse(body)
-    rescue StandardError
-      # Ignored
-    end
-
-    body
+    Helper.post(Sms77::Endpoint::LOOKUP, stub, { type: type, number: '+491771783130' }.merge(extra_args))
   end
 
   it 'misses number to lookup' do

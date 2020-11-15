@@ -22,10 +22,13 @@ RSpec.describe Sms77, 'voice' do
       0.1
     TEXT
 
-    params = { to: Helper.virtual_inbound_nr_eplus, text: text, from: Helper.virtual_inbound_nr_eplus }
-               .merge(extra_params)
+    params = {
+      from: Helper.virtual_inbound_nr_eplus,
+      text: text,
+      to: Helper.virtual_inbound_nr_eplus
+    }.merge(extra_params)
 
-    Helper.request(Sms77::Endpoint::VOICE, params, stub)
+    Helper.post(Sms77::Endpoint::VOICE, stub, params)
   end
 
   it 'calls a number with text input' do

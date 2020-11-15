@@ -36,16 +36,12 @@ RSpec.describe Sms77, 'pricing' do
       ]
     }
 
-    Helper.stubs.get("/api/#{Sms77::Endpoint::PRICING}") { |_env| [200, {}, JSON.generate(stub)] } unless Helper.is_http
+    res = Helper.get(Sms77::Endpoint::PRICING, stub)
+    countries = res['countries']
 
-    response = Helper.client.pricing
-    body = JSON.parse(response.body)
-    countries = body['countries']
-
-    expect(response.class).to eq(Faraday::Response)
-    expect(body).to be_kind_of(Hash)
-    expect(body['countCountries']).to be_kind_of(Integer)
-    expect(body['countNetworks']).to be_kind_of(Integer)
+    expect(res).to be_kind_of(Hash)
+    expect(res['countCountries']).to be_kind_of(Integer)
+    expect(res['countNetworks']).to be_kind_of(Integer)
     expect(countries).to be_kind_of(Array)
 
     countries.each do |country|

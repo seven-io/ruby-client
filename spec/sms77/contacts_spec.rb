@@ -39,7 +39,8 @@ RSpec.describe Sms77, 'contacts' do
   end
 
   def request(action, stub, extra_params = {})
-    Helper.request(Sms77::Endpoint::CONTACTS, { action: action }.merge(extra_params), stub)
+    Helper.method(Sms77::ContactsAction::READ == action ? :get : :post)
+          .call(Sms77::Endpoint::CONTACTS, stub, { action: action }.merge(extra_params))
   end
 
   it 'returns all contacts as CSV' do
@@ -63,7 +64,7 @@ RSpec.describe Sms77, 'contacts' do
     end
   end
 
-  it 'returns all contacts as CSV' do
+  it 'returns all contacts as JSON' do
     stub = [
       { ID: '4848436', Name: '', Number: '' },
       { ID: '4848437', Name: '', Number: '' },

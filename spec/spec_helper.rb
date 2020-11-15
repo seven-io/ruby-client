@@ -18,39 +18,33 @@ RSpec::Matchers.define :be_numeric do
   end
 end
 
-class Helper
-  @is_http = ENV.key?('TEST_HTTP')
-  @stubs = Faraday::Adapter::Test::Stubs.new
-  @conn = Faraday.new do |b|
-    b.adapter(:test, @stubs) unless @is_http
+RSpec::Matchers.define :be_lengthy do
+  match do |value|
+    return true if value.is_a?(String) && !Helper.client.sent_with.empty?
   end
-  @client = Sms77::Client.new(ENV['SMS77_DUMMY_API_KEY'], @conn, 'ruby-test')
+end
+
+class Helper
+  @client = Sms77::Client.new(ENV['SMS77_DUMMY_API_KEY'], 'ruby-test')
+  @is_http = ENV.key?('TEST_HTTP').freeze
+  @stubs = Faraday::Adapter::Test::Stubs.new
   @virtual_inbound_nr_eplus = '+491771783130'
+  @client.builder.adapter(:test, @stubs) unless @is_http
 
-  def self.request(endpoint, params, stub, extra_params = {})
-    path = "#{Sms77::Client::API_SUFFIX}#{endpoint}"
+  @client.http_methods.each do |method|
+    self.class.define_method(method.name) { |*args| request(@stubs.method(method.name.to_sym), *args) }
+  end
 
-    # TODO-START: determine request method to avoid multiple useless stubs
-    @stubs.get(path) { |_env| [200, {}, JSON.generate(stub)] } unless @is_http
-    @stubs.post(path) { |_env| [200, {}, JSON.generate(stub)] } unless @is_http
-    # TODO-END
-
-    response = @client.method(endpoint).call(params.merge(extra_params))
-
-    raise 'unexpected response' unless Faraday::Response == response.class
-
-    body = response.body
-
-    begin
-      body = JSON.parse(body)
-    rescue StandardError
-      # Ignored
+  def self.request(method, endpoint, stub, params = {})
+    unless @is_http
+      method.call(@client.base_path + endpoint) { |_env| [200, {}, JSON.generate(stub)] }
     end
 
-    body
+    args = [params] unless params.empty?
+    @client.method(endpoint).call(*args)
   end
 
   class << self
-    attr_reader :is_http, :stubs, :conn, :client, :virtual_inbound_nr_eplus
+    attr_reader :is_http, :virtual_inbound_nr_eplus, :client
   end
 end

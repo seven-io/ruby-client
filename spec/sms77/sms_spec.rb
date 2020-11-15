@@ -28,7 +28,7 @@ RSpec.describe Sms77, 'sms' do
       to: Helper.virtual_inbound_nr_eplus
     }.merge(extra_params)
 
-    Helper.request(Sms77::Endpoint::SMS, params, stub)
+    Helper.post(Sms77::Endpoint::SMS, stub, params)
   end
 
   it 'sends a single sms and returns success code' do
