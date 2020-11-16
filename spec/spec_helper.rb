@@ -45,7 +45,7 @@ class Helper
   @client = Sms77::Client.new(ENV['SMS77_DUMMY_API_KEY'], 'ruby-test')
   @is_http = ENV.key?('TEST_HTTP').freeze
   @stubs = Faraday::Adapter::Test::Stubs.new
-  @virtual_inbound_nr_eplus = '+491771783130'
+  @virtual_inbound_nr_eplus = '+491771783130'.freeze
   Sms77::Client::BUILDER.adapter(:test, @stubs) unless @is_http
 
   Sms77::Client::HTTP_METHODS.each do |method|
@@ -53,9 +53,7 @@ class Helper
   end
 
   def self.request(method, endpoint, stub, params = nil)
-    unless @is_http
-      method.call(Sms77::Client::BASE_PATH + endpoint) { |_env| [200, {}, JSON.generate(stub)] }
-    end
+    method.call(Sms77::Client::BASE_PATH + endpoint) { || [200, {}, stub] } unless @is_http
 
     @client.method(endpoint).call(*[params].compact)
   end

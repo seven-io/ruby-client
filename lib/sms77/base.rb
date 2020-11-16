@@ -24,15 +24,12 @@ module Sms77
       @api_key = api_key
       @sent_with = sent_with
 
-      CONN.authorization :Bearer, @api_key
-      CONN.headers['sentWith'] = @sent_with
-
       HTTP_METHODS.each do |method|
         define_singleton_method(method.name) { |*args| request(method, *args) }
       end
     end
 
-    attr_reader :builder, :api_key, :http_methods, :sent_with, :base_path
+    attr_reader :api_key, :sent_with
 
     protected
 
@@ -43,19 +40,38 @@ module Sms77
         payload = {}
       end
 
-      res = CONN.run_request(method.name, path, payload, {})
+      method = method.name
+      headers = Hash[
+        Faraday::Request::Authorization::KEY, "Bearer #{@api_key}",
+        'sentWith', @sent_with
+      ]
 
-      puts res.inspect if ENV['SMS77_DEBUG']
+      res = CONN.run_request(method, path, payload, headers)
+
+      puts JSON.pretty_generate(res.to_hash.merge({
+                                                    :method => method,
+                                                    :path => path,
+                                                    :payload => payload,
+                                                    :req_headers => headers
+                                                  }).compact) if ENV['SMS77_DEBUG']
 
       raise "Error requesting (#{self.class.name}) with code #{res.status}" unless 200 == res.status
 
       raise 'Unexpected response' unless res.is_a?(Faraday::Response)
 
-      begin
-         JSON.parse(res.body)
-      rescue StandardError
-        res.body
+      body = res.body
+
+      if body.is_a?(String)
+        begin
+          body = JSON.parse(body, :symbolize_names => true)
+        rescue StandardError
+          # Ignored
+        end
       end
+
+      body.map! { |hash| hash.transform_keys(&:to_sym) } if body.is_a?(Array)
+
+      body
     end
   end
 end

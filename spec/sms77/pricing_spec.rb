@@ -37,39 +37,39 @@ RSpec.describe Sms77, 'pricing' do
     }
 
     res = Helper.get(Sms77::Endpoint::PRICING, stub)
-    countries = res['countries']
+    countries = res[:countries]
 
     expect(res).to be_kind_of(Hash)
-    expect(res['countCountries']).to be_kind_of(Integer)
-    expect(res['countNetworks']).to be_kind_of(Integer)
+    expect(res[:countCountries]).to be_kind_of(Integer)
+    expect(res[:countNetworks]).to be_kind_of(Integer)
     expect(countries).to be_kind_of(Array)
 
     countries.each do |country|
-      networks = country['networks']
+      networks = country[:networks]
 
       expect(country).to be_kind_of(Hash)
-      expect(country['countryCode']).to be_kind_of(String)
-      expect(country['countryName']).to be_kind_of(String)
-      expect(country['countryPrefix']).to be_kind_of(String)
+      expect(country[:countryCode]).to be_kind_of(String)
+      expect(country[:countryName]).to be_kind_of(String)
+      expect(country[:countryPrefix]).to be_kind_of(String)
       expect(networks).to be_kind_of(Array)
 
       networks.each do |network|
-        mncs = network['mncs']
-        features = network['features']
+        mncs = network[:mncs]
+        features = network[:features]
 
         expect(network).to be_kind_of(Hash)
-        expect(network['mcc']).to be_kind_of(String)
+        expect(network[:mcc]).to be_kind_of(String)
         expect(mncs).to be_kind_of(Array)
         mncs.each do |mnc|
           expect(mnc).to be_kind_of(String)
         end
-        expect(network['networkName']).to be_kind_of(String)
-        expect(network['price']).to be_kind_of(Float)
+        expect(network[:networkName]).to be_kind_of(String)
+        expect(network[:price]).to be_kind_of(Float)
         expect(features).to be_kind_of(Array)
         features.each do |feature|
           expect(feature).to be_kind_of(String)
         end
-        expect(network['comment']).to be_kind_of(String)
+        expect(network[:comment]).to be_kind_of(String)
       end
     end
   end

@@ -90,13 +90,13 @@ RSpec.describe Sms77, 'sms' do
 
     expect(body).to be_kind_of(Hash)
 
-    expect(body['success']).to be_kind_of(String)
-    expect(body['total_price']).to be_numeric
-    expect(body['balance']).to be_kind_of(Float)
-    expect(body['debug']).to be_kind_of(String)
-    expect(body['sms_type']).to eq('direct')
-    expect(body['messages']).to be_kind_of(Array)
-    body['messages'].each do |message|
+    expect(body[:success]).to be_kind_of(String)
+    expect(body[:total_price]).to be_numeric
+    expect(body[:balance]).to be_kind_of(Float)
+    expect(body[:debug]).to be_kind_of(String)
+    expect(body[:sms_type]).to eq('direct')
+    expect(body[:messages]).to be_kind_of(Array)
+    body[:messages].each do |message|
       expect(message).to be_kind_of(Hash)
     end
   end

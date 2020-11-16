@@ -12,8 +12,8 @@ RSpec.describe Sms77, 'contacts' do
       code, $new_contact_id = response_body.split("\n")
       $new_contact_id = $new_contact_id.to_i
     else
-      code = response_body['return']
-      $new_contact_id = response_body['id']
+      code = response_body[:return]
+      $new_contact_id = response_body[:id]
     end
 
     expect(code).to be_numeric
@@ -28,9 +28,9 @@ RSpec.describe Sms77, 'contacts' do
       name = name.gsub('"', '')
       number = number.gsub('"', '')
     else
-      id = contact['ID']
-      name = contact['Name']
-      number = contact['Number']
+      id = contact[:ID]
+      name = contact[:Name]
+      number = contact[:Number]
     end
 
     expect(id).to be_numeric
@@ -114,6 +114,6 @@ RSpec.describe Sms77, 'contacts' do
     body = request(Sms77::ContactsAction::DEL, { return: '152' }, { id: $new_contact_id, json: 1 })
 
     expect(body).to be_kind_of(Hash)
-    expect(body['return']).to be_kind_of(String)
+    expect(body[:return]).to be_kind_of(String)
   end
 end

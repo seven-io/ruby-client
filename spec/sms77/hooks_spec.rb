@@ -18,9 +18,6 @@ RSpec.describe Sms77, 'hooks' do
   def request(action, stub, extra_params = {})
     res = Helper.method(Sms77::Hooks::Action::READ == action ? :get : :post)
                 .call(Sms77::Endpoint::HOOKS, stub, { action: action }.merge(extra_params))
-                .transform_keys(&:to_sym)
-
-    res[:hooks].map! { |hash| hash.transform_keys(&:to_sym) } if res.key?(:hooks)
 
     expect(res).to be_a(Hash)
 
@@ -42,7 +39,7 @@ RSpec.describe Sms77, 'hooks' do
           :event_type => "sms_mo",
           :id => "30",
           :request_method => "GET",
-          :target_url => "http:\/\/my.tld\/testHook"
+          :target_url => "http://my.tld/testHook"
         }
       ],
       :success => true

@@ -14,6 +14,6 @@ RSpec.describe Sms77, 'validate_for_voice' do
     body = Helper.post(Sms77::Endpoint::VALIDATE_FOR_VOICE, stub, { number: number, callback: callback })
 
     expect(body).to be_kind_of(Hash)
-    expect(body['success']).to be_boolean
+    expect(body[:success]).to be_boolean
   end
 end

@@ -11,4 +11,8 @@ RSpec.describe Sms77, 'client' do
   it 'checks sentWith' do
     expect(Helper.client.sent_with).to be_lengthy(String)
   end
+
+  it 'fails authentication' do
+    expect { Sms77::Client.new('') }.to raise_error(RuntimeError)
+  end
 end

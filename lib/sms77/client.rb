@@ -25,7 +25,7 @@ module Sms77
     def hooks(params)
       Sms77::Hooks::Validator::validate(params)
 
-     get_or_post(Sms77::Hooks::Action::READ == params[:action], Sms77::Endpoint::HOOKS, params)
+      get_or_post(Sms77::Hooks::Action::READ == params[:action], Sms77::Endpoint::HOOKS, params)
     end
 
     def lookup(params)
