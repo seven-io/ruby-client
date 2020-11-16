@@ -9,23 +9,26 @@ require 'sms77/header'
 
 module Sms77
   class Base
+    BASE_PATH = '/api/'.freeze
+    CONN = Faraday.new("https://gateway.sms77.io#{BASE_PATH}")
+    HTTP_GET = CONN.method(:get).freeze
+    HTTP_POST = CONN.method(:post).freeze
+    CONN.freeze
+    HTTP_METHODS = [HTTP_GET, HTTP_POST].freeze
+    BUILDER = CONN.builder
+
     def initialize(api_key, sent_with = 'ruby')
       raise 'missing api_key in config' if api_key.to_s.empty?
       raise 'missing sent_with in config' if sent_with.to_s.empty?
 
       @api_key = api_key
       @sent_with = sent_with
-      @base_path = '/api/'.freeze
 
-      @conn = Faraday.new("https://gateway.sms77.io#{@base_path}")
-      @http_methods = [@conn.method(:get), @conn.method(:post)].freeze
-      @conn.authorization :Bearer, @api_key
-      @conn.headers['sentWith'] = @sent_with
-      @conn.freeze
-      @builder = @conn.builder
+      CONN.authorization :Bearer, @api_key
+      CONN.headers['sentWith'] = @sent_with
 
-      @http_methods.each do |method|
-        define_singleton_method(method.name) { |*args| request(method.name, *args) }
+      HTTP_METHODS.each do |method|
+        define_singleton_method(method.name) { |*args| request(method, *args) }
       end
     end
 
@@ -33,31 +36,26 @@ module Sms77
 
     protected
 
-    def request(method, endpoint, params = {})
-      if ENV['SMS77_DEBUG']
-        puts "#{method} @ #{endpoint} with headers #{@conn.headers.inspect}"
-        puts "url_prefix: #{@conn.url_prefix}"
-        puts "built URL: #{@conn.build_url(endpoint)}"
-        puts "exclusive URL: #{@conn.build_exclusive_url(endpoint)}"
+    def request(method, path, payload = {})
+      if !payload.empty? && HTTP_GET == method
+        path = "#{path}?#{URI.encode_www_form(payload)}"
+
+        payload = {}
       end
 
-      res = @conn.run_request(method, endpoint, params, {})
+      res = CONN.run_request(method.name, path, payload, {})
+
+      puts res.inspect if ENV['SMS77_DEBUG']
 
       raise "Error requesting (#{self.class.name}) with code #{res.status}" unless 200 == res.status
 
       raise 'Unexpected response' unless res.is_a?(Faraday::Response)
 
-      body = res.body
-
       begin
-        body = JSON.parse(body)
+         JSON.parse(res.body)
       rescue StandardError
-        # Ignored
+        res.body
       end
-
-      puts "received: #{res.inspect}" if ENV['SMS77_DEBUG']
-
-      body
     end
   end
 end

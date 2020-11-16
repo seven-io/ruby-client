@@ -5,6 +5,7 @@ module Sms77
     ANALYTICS = 'analytics'
     BALANCE = 'balance'
     CONTACTS = 'contacts'
+    HOOKS = 'hooks'
     LOOKUP = 'lookup'
     PRICING = 'pricing'
     SMS = 'sms'

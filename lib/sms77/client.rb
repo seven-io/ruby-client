@@ -19,7 +19,13 @@ module Sms77
     end
 
     def contacts(params)
-      method(Sms77::ContactsAction::READ.to_s == params[:action] ? :get : :post).call(Sms77::Endpoint::CONTACTS, params)
+      get_or_post(Sms77::ContactsAction::READ == params[:action], Sms77::Endpoint::CONTACTS, params)
+    end
+
+    def hooks(params)
+      Sms77::Hooks::Validator::validate(params)
+
+     get_or_post(Sms77::Hooks::Action::READ == params[:action], Sms77::Endpoint::HOOKS, params)
     end
 
     def lookup(params)
@@ -44,6 +50,12 @@ module Sms77
 
     def voice(params)
       post(Sms77::Endpoint::VOICE, params)
+    end
+
+    private
+
+    def get_or_post(bool, *args)
+      method(bool ? :get : :post).call(*args)
     end
   end
 end
