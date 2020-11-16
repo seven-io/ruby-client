@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 require 'sms77/endpoint'
-require 'sms77/lookup_type'
+require 'sms77/lookup'
 require 'json'
 
 RSpec.describe Sms77, 'lookup' do
@@ -23,9 +23,9 @@ RSpec.describe Sms77, 'lookup' do
       success: false
     }
 
-    res = request(Sms77::LookupType::FORMAT, stub, { number: '' })
+    res = request(Sms77::Lookup::Type::FORMAT, stub, { number: '' })
 
-    expect(res).to be_kind_of(Hash)
+    expect(res).to be_a(Hash)
     expect(res[:success]).to match(false)
   end
 
@@ -42,17 +42,17 @@ RSpec.describe Sms77, 'lookup' do
       success: true
     }
 
-    body = request(Sms77::LookupType::FORMAT, stub)
+    body = request(Sms77::Lookup::Type::FORMAT, stub)
 
-    expect(body).to be_kind_of(Hash)
-    expect(body[:carrier]).to be_kind_of(String)
-    expect(body[:country_code]).to be_kind_of(String)
-    expect(body[:country_iso]).to be_kind_of(String)
-    expect(body[:country_name]).to be_kind_of(String)
-    expect(body[:international]).to be_kind_of(String)
-    expect(body[:international_formatted]).to be_kind_of(String)
-    expect(body[:national]).to be_kind_of(String)
-    expect(body[:network_type]).to be_kind_of(String)
+    expect(body).to be_a(Hash)
+    expect(body[:carrier]).to be_a(String)
+    expect(body[:country_code]).to be_a(String)
+    expect(body[:country_iso]).to be_a(String)
+    expect(body[:country_name]).to be_a(String)
+    expect(body[:international]).to be_a(String)
+    expect(body[:international_formatted]).to be_a(String)
+    expect(body[:national]).to be_a(String)
+    expect(body[:network_type]).to be_a(String)
     expect(body[:success]).to be_boolean
   end
 
@@ -63,19 +63,19 @@ RSpec.describe Sms77, 'lookup' do
       number: '+491771783130',
       success: 'true'
     }
-    body = request(Sms77::LookupType::CNAM, stub)
+    body = request(Sms77::Lookup::Type::CNAM, stub)
 
-    expect(body).to be_kind_of(Hash)
-    expect(body[:code]).to be_kind_of(String)
-    expect(body[:name]).to be_kind_of(String)
-    expect(body[:number]).to be_kind_of(String)
-    expect(body[:success]).to be_kind_of(String)
+    expect(body).to be_a(Hash)
+    expect(body[:code]).to be_a(String)
+    expect(body[:name]).to be_a(String)
+    expect(body[:number]).to be_a(String)
+    expect(body[:success]).to be_a(String)
   end
 
   it 'returns MNP details as text' do
-    body = request(Sms77::LookupType::MNP, 'eplus')
+    body = request(Sms77::Lookup::Type::MNP, 'eplus')
 
-    expect(body).to be_kind_of(String)
+    expect(body).to be_a(String)
   end
 
   it 'returns MNP details as json' do
@@ -93,19 +93,19 @@ RSpec.describe Sms77, 'lookup' do
       price: 0.005,
       success: true
     }
-    body = request(Sms77::LookupType::MNP, stub, { json: 1 })
+    body = request(Sms77::Lookup::Type::MNP, stub, { json: 1 })
 
-    expect(body).to be_kind_of(Hash)
-    expect(body[:code]).to be_kind_of(Integer)
-    expect(body[:price]).to be_kind_of(Float)
-    expect(body[:mnp]).to be_kind_of(Hash)
-    expect(body[:mnp][:country]).to be_kind_of(String)
-    expect(body[:mnp][:international_formatted]).to be_kind_of(String)
+    expect(body).to be_a(Hash)
+    expect(body[:code]).to be_a(Integer)
+    expect(body[:price]).to be_a(Float)
+    expect(body[:mnp]).to be_a(Hash)
+    expect(body[:mnp][:country]).to be_a(String)
+    expect(body[:mnp][:international_formatted]).to be_a(String)
     expect(body[:mnp][:isPorted]).to be_boolean
-    expect(body[:mnp][:mccmnc]).to be_kind_of(String)
-    expect(body[:mnp][:national_format]).to be_kind_of(String)
-    expect(body[:mnp][:network]).to be_kind_of(String)
-    expect(body[:mnp][:number]).to be_kind_of(String)
+    expect(body[:mnp][:mccmnc]).to be_a(String)
+    expect(body[:mnp][:national_format]).to be_a(String)
+    expect(body[:mnp][:network]).to be_a(String)
+    expect(body[:mnp][:number]).to be_a(String)
     expect(body[:success]).to be_boolean
   end
 
@@ -141,27 +141,27 @@ RSpec.describe Sms77, 'lookup' do
       valid_number: 'valid'
     }
 
-    body = request(Sms77::LookupType::HLR, stub)
+    body = request(Sms77::Lookup::Type::HLR, stub)
 
-    expect(body).to be_kind_of(Hash)
-    expect(body[:country_code]).to be_kind_of(String)
-    expect(body[:country_name]).to be_kind_of(String)
-    expect(body[:country_prefix]).to be_kind_of(String)
+    expect(body).to be_a(Hash)
+    expect(body[:country_code]).to be_a(String)
+    expect(body[:country_name]).to be_a(String)
+    expect(body[:country_prefix]).to be_a(String)
     assert_carrier(body[:current_carrier])
-    expect(body[:international_format_number]).to be_kind_of(String)
-    expect(body[:international_formatted]).to be_kind_of(String)
+    expect(body[:international_format_number]).to be_a(String)
+    expect(body[:international_formatted]).to be_a(String)
     expect(body[:lookup_outcome]).to be_boolean
-    expect(body[:lookup_outcome_message]).to be_kind_of(String)
-    expect(body[:national_format_number]).to be_kind_of(String)
+    expect(body[:lookup_outcome_message]).to be_a(String)
+    expect(body[:national_format_number]).to be_a(String)
     assert_carrier(body[:original_carrier])
     expect(body[:status]).to be_boolean
-    expect(body[:status_message]).to be_kind_of(String)
-    expect(body[:gsm_code]).to be_kind_of(String)
-    expect(body[:gsm_message]).to be_kind_of(String)
-    expect(body[:ported]).to be_kind_of(String)
-    expect(body[:reachable]).to be_kind_of(String)
-    expect(body[:roaming]).to be_kind_of(String)
-    expect(body[:valid_number]).to be_kind_of(String)
+    expect(body[:status_message]).to be_a(String)
+    expect(body[:gsm_code]).to be_a(String)
+    expect(body[:gsm_message]).to be_a(String)
+    expect(body[:ported]).to be_a(String)
+    expect(body[:reachable]).to be_a(String)
+    expect(body[:roaming]).to be_a(String)
+    expect(body[:valid_number]).to be_a(String)
   end
 
   def assert_carrier(hash)

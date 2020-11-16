@@ -13,5 +13,5 @@ require 'sms77'
 
 client = Sms77::Client.new(ENV['SMS77_API_KEY'])
 
-puts "Balance: #{client.balance.body}"
+puts "Balance: #{client.balance}"
 ```

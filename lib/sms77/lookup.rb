@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-module Sms77
-  module LookupType
+module Sms77::Lookup
+  module Type
     CNAM = 'cnam'
     FORMAT = 'format'
     HLR = 'hlr'

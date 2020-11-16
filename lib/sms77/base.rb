@@ -4,12 +4,10 @@ require 'cgi'
 require 'json'
 require 'faraday'
 require 'sms77/endpoint'
-require 'sms77/contacts_action'
-require 'sms77/header'
 
 module Sms77
   class Base
-    BASE_PATH = '/api/'.freeze
+    BASE_PATH = '/api/'
     CONN = Faraday.new("https://gateway.sms77.io#{BASE_PATH}")
     HTTP_GET = CONN.method(:get).freeze
     HTTP_POST = CONN.method(:post).freeze

@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 require 'sms77/endpoint'
-require 'sms77/contacts_action'
+require 'sms77/contacts'
 
 RSpec.describe Sms77, 'sms' do
   $text = 'Your glasses are ready for pickup.'
@@ -32,7 +32,7 @@ RSpec.describe Sms77, 'sms' do
   end
 
   it 'sends a single sms and returns success code' do
-    expect(request(100)).to be_kind_of(Integer)
+    expect(request(100)).to be_a(Integer)
   end
 
   it 'sends a single sms and returns detailed text response' do
@@ -51,14 +51,14 @@ RSpec.describe Sms77, 'sms' do
 
     body = request(stub, { details: 1 })
 
-    expect(body).to be_kind_of(String)
+    expect(body).to be_a(String)
 
     code, booked, cost, balance, text, type, flash, encoding, gsm0338, debug = body.split("\n")
 
-    expect(code).to be_kind_of(String)
-    expect(booked.split(':').last.to_f).to be_kind_of(Float)
-    expect(cost.split(':').last.to_f).to be_kind_of(Float)
-    expect(balance.split(':').last.to_f).to be_kind_of(Float)
+    expect(code).to be_a(String)
+    expect(booked.split(':').last.to_f).to be_a(Float)
+    expect(cost.split(':').last.to_f).to be_a(Float)
+    expect(balance.split(':').last.to_f).to be_a(Float)
     expect(text.split(':').last.strip!).to eq($text)
     expect(type.split(':').last.strip!).to eq('direct')
     expect(flash.split(':').last.strip!).to eq('false')
@@ -88,16 +88,16 @@ RSpec.describe Sms77, 'sms' do
 
     body = request(stub, { json: 1 })
 
-    expect(body).to be_kind_of(Hash)
+    expect(body).to be_a(Hash)
 
-    expect(body[:success]).to be_kind_of(String)
+    expect(body[:success]).to be_a(String)
     expect(body[:total_price]).to be_numeric
-    expect(body[:balance]).to be_kind_of(Float)
-    expect(body[:debug]).to be_kind_of(String)
+    expect(body[:balance]).to be_a(Float)
+    expect(body[:debug]).to be_a(String)
     expect(body[:sms_type]).to eq('direct')
-    expect(body[:messages]).to be_kind_of(Array)
+    expect(body[:messages]).to be_a(Array)
     body[:messages].each do |message|
-      expect(message).to be_kind_of(Hash)
+      expect(message).to be_a(Hash)
     end
   end
 end

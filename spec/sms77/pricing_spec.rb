@@ -39,37 +39,37 @@ RSpec.describe Sms77, 'pricing' do
     res = Helper.get(Sms77::Endpoint::PRICING, stub)
     countries = res[:countries]
 
-    expect(res).to be_kind_of(Hash)
-    expect(res[:countCountries]).to be_kind_of(Integer)
-    expect(res[:countNetworks]).to be_kind_of(Integer)
-    expect(countries).to be_kind_of(Array)
+    expect(res).to be_a(Hash)
+    expect(res[:countCountries]).to be_a(Integer)
+    expect(res[:countNetworks]).to be_a(Integer)
+    expect(countries).to be_a(Array)
 
     countries.each do |country|
       networks = country[:networks]
 
-      expect(country).to be_kind_of(Hash)
-      expect(country[:countryCode]).to be_kind_of(String)
-      expect(country[:countryName]).to be_kind_of(String)
-      expect(country[:countryPrefix]).to be_kind_of(String)
-      expect(networks).to be_kind_of(Array)
+      expect(country).to be_a(Hash)
+      expect(country[:countryCode]).to be_a(String)
+      expect(country[:countryName]).to be_a(String)
+      expect(country[:countryPrefix]).to be_a(String)
+      expect(networks).to be_a(Array)
 
       networks.each do |network|
         mncs = network[:mncs]
         features = network[:features]
 
-        expect(network).to be_kind_of(Hash)
-        expect(network[:mcc]).to be_kind_of(String)
-        expect(mncs).to be_kind_of(Array)
+        expect(network).to be_a(Hash)
+        expect(network[:mcc]).to be_a(String)
+        expect(mncs).to be_a(Array)
         mncs.each do |mnc|
-          expect(mnc).to be_kind_of(String)
+          expect(mnc).to be_a(String)
         end
-        expect(network[:networkName]).to be_kind_of(String)
-        expect(network[:price]).to be_kind_of(Float)
-        expect(features).to be_kind_of(Array)
+        expect(network[:networkName]).to be_a(String)
+        expect(network[:price]).to be_a(Float)
+        expect(features).to be_a(Array)
         features.each do |feature|
-          expect(feature).to be_kind_of(String)
+          expect(feature).to be_a(String)
         end
-        expect(network[:comment]).to be_kind_of(String)
+        expect(network[:comment]).to be_a(String)
       end
     end
   end

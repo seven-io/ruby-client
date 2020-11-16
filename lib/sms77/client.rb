@@ -4,8 +4,7 @@ require 'cgi'
 require 'json'
 require 'faraday'
 require 'sms77/endpoint'
-require 'sms77/contacts_action'
-require 'sms77/header'
+require 'sms77/contacts'
 require 'sms77/base'
 
 module Sms77
@@ -19,7 +18,7 @@ module Sms77
     end
 
     def contacts(params)
-      get_or_post(Sms77::ContactsAction::READ == params[:action], Sms77::Endpoint::CONTACTS, params)
+      get_or_post(Sms77::Contacts::Action::READ == params[:action], Sms77::Endpoint::CONTACTS, params)
     end
 
     def hooks(params)

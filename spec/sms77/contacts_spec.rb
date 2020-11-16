@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 require 'sms77/endpoint'
-require 'sms77/contacts_action'
+require 'sms77/contacts'
 
 RSpec.describe Sms77, 'contacts' do
   $new_contact_id = nil
@@ -39,7 +39,7 @@ RSpec.describe Sms77, 'contacts' do
   end
 
   def request(action, stub, extra_params = {})
-    Helper.method(Sms77::ContactsAction::READ == action ? :get : :post)
+    Helper.method(Sms77::Contacts::Action::READ == action ? :get : :post)
           .call(Sms77::Endpoint::CONTACTS, stub, { action: action }.merge(extra_params))
   end
 
@@ -55,9 +55,9 @@ RSpec.describe Sms77, 'contacts' do
       "2925186";"Tom Tester";"004901234567890"
     CSV
 
-    body = request(Sms77::ContactsAction::READ, stub)
+    body = request(Sms77::Contacts::Action::READ, stub)
 
-    expect(body).to be_kind_of(String)
+    expect(body).to be_a(String)
 
     body.split("\n").each do |contact|
       assert_contact(contact)
@@ -76,9 +76,9 @@ RSpec.describe Sms77, 'contacts' do
       { ID: '2925186', Name: 'Tom Tester', Number: '004901234567890' }
     ]
 
-    body = request(Sms77::ContactsAction::READ, stub, { json: 1 })
+    body = request(Sms77::Contacts::Action::READ, stub, { json: 1 })
 
-    expect(body).to be_kind_of(Array)
+    expect(body).to be_a(Array)
 
     body.each do |contact|
       assert_contact(contact)
@@ -91,29 +91,29 @@ RSpec.describe Sms77, 'contacts' do
       4868400
     TEXT
 
-    body = request(Sms77::ContactsAction::WRITE, stub)
+    body = request(Sms77::Contacts::Action::WRITE, stub)
 
-    expect(body).to be_kind_of(String)
+    expect(body).to be_a(String)
 
     assert_new(body)
   end
 
   it 'deletes a contact with given ID and return code' do
-    expect(request(Sms77::ContactsAction::DEL, 152, { id: $new_contact_id })).to be_kind_of(Integer)
+    expect(request(Sms77::Contacts::Action::DEL, 152, { id: $new_contact_id })).to be_a(Integer)
   end
 
   it 'creates a contact and returns its ID as JSON' do
-    body = request(Sms77::ContactsAction::WRITE, { id: 4868401, return: '152' }, { json: 1 })
+    body = request(Sms77::Contacts::Action::WRITE, { id: 4868401, return: '152' }, { json: 1 })
 
-    expect(body).to be_kind_of(Hash)
+    expect(body).to be_a(Hash)
 
     assert_new(body)
   end
 
   it 'deletes a contact with given ID and return code as JSON' do
-    body = request(Sms77::ContactsAction::DEL, { return: '152' }, { id: $new_contact_id, json: 1 })
+    body = request(Sms77::Contacts::Action::DEL, { return: '152' }, { id: $new_contact_id, json: 1 })
 
-    expect(body).to be_kind_of(Hash)
-    expect(body[:return]).to be_kind_of(String)
+    expect(body).to be_a(Hash)
+    expect(body[:return]).to be_a(String)
   end
 end

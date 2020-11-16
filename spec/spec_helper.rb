@@ -27,7 +27,7 @@ end
 
 class EnvKeyStore
   def initialize(key)
-    @key = "SMS77_TEST_#{key}".freeze
+    @key = "SMS77_TEST_#{key}"
 
     @store = ENV[@key]
   end
@@ -45,7 +45,7 @@ class Helper
   @client = Sms77::Client.new(ENV['SMS77_DUMMY_API_KEY'], 'ruby-test')
   @is_http = ENV.key?('TEST_HTTP').freeze
   @stubs = Faraday::Adapter::Test::Stubs.new
-  @virtual_inbound_nr_eplus = '+491771783130'.freeze
+  @virtual_inbound_nr_eplus = '+491771783130'
   Sms77::Client::BUILDER.adapter(:test, @stubs) unless @is_http
 
   Sms77::Client::HTTP_METHODS.each do |method|

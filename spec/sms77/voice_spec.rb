@@ -2,11 +2,11 @@
 
 require 'spec_helper'
 require 'sms77/endpoint'
-require 'sms77/contacts_action'
+require 'sms77/contacts'
 
 RSpec.describe Sms77, 'voice' do
   def assert_response(response)
-    expect(response).to be_kind_of(String)
+    expect(response).to be_a(String)
 
     code, id, cost = response.split("\n")
 
