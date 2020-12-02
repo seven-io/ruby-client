@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 require 'spec_helper'
-require 'sms77/endpoint'
-require 'sms77/contacts'
+require 'sms77/resources/sms'
 
 RSpec.describe Sms77, 'sms' do
   $text = 'Your glasses are ready for pickup.'
@@ -23,12 +22,13 @@ RSpec.describe Sms77, 'sms' do
 
   def request(stub, extra_params = {})
     params = {
-      from: Helper.virtual_inbound_nr_eplus,
+      from: Helper::VIRTUAL_INBOUNDS[:eplus],
       text: $text,
-      to: Helper.virtual_inbound_nr_eplus
+      to: Helper::VIRTUAL_INBOUNDS[:eplus]
     }.merge(extra_params)
 
-    Helper.post(Sms77::Endpoint::SMS, stub, params)
+    helper = Helper.new(Sms77::Resources::Sms)
+    helper.request(helper.resource.method(:retrieve), stub, params)
   end
 
   it 'sends a single sms and returns success code' do

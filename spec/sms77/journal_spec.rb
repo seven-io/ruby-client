@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 require 'spec_helper'
-require 'sms77/endpoint'
 require 'sms77/journal'
+require 'sms77/resources/journal'
 require 'sms77/sms'
 
 RSpec.describe Sms77, 'journal' do
@@ -20,7 +20,8 @@ RSpec.describe Sms77, 'journal' do
               :to => "49170123456789",
             }]
 
-    res = Helper.get(Sms77::Endpoint::JOURNAL, stub, { type: type })
+    helper = Helper.new(Sms77::Resources::Journal)
+    res = helper.request(helper.resource.method(:retrieve), stub, { type: type })
 
     expect(res).to be_a(Array)
 

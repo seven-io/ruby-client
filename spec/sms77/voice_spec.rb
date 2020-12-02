@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 require 'spec_helper'
-require 'sms77/endpoint'
-require 'sms77/contacts'
+require 'sms77/resources/voice'
 
 RSpec.describe Sms77, 'voice' do
   def assert_response(response)
@@ -23,16 +22,17 @@ RSpec.describe Sms77, 'voice' do
     TEXT
 
     params = {
-      from: Helper.virtual_inbound_nr_eplus,
+      from: Helper::VIRTUAL_INBOUNDS[:eplus],
       text: text,
-      to: Helper.virtual_inbound_nr_eplus
+      to: Helper::VIRTUAL_INBOUNDS[:eplus]
     }.merge(extra_params)
 
-    Helper.post(Sms77::Endpoint::VOICE, stub, params)
+    helper = Helper.new(Sms77::Resources::Voice)
+    assert_response(helper.request(helper.resource.method(:send), stub, params))
   end
 
   it 'calls a number with text input' do
-    assert_response(request('Your glasses are ready for pickup.'))
+    request('Your glasses are ready for pickup.')
   end
 
   it 'calls a number with xml input' do
@@ -46,6 +46,6 @@ RSpec.describe Sms77, 'voice' do
       </Response>
     XML
 
-    assert_response(request(text, { xml: 1 }))
+    request(text, { xml: true })
   end
 end

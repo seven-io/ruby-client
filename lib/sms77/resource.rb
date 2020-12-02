@@ -6,14 +6,10 @@ require 'faraday'
 require 'sms77/endpoint'
 
 module Sms77
-  class Base
+  class Resource
+    attr_reader :api_key, :endpoint, :sent_with, :http_methods, :request_methods, :builder, :conn
+
     BASE_PATH = '/api/'
-    CONN = Faraday.new("https://gateway.sms77.io#{BASE_PATH}")
-    HTTP_GET = CONN.method(:get).freeze
-    HTTP_POST = CONN.method(:post).freeze
-    CONN.freeze
-    HTTP_METHODS = [HTTP_GET, HTTP_POST].freeze
-    BUILDER = CONN.builder
 
     def initialize(api_key, sent_with = 'ruby')
       raise 'missing api_key in config' if api_key.to_s.empty?
@@ -21,36 +17,48 @@ module Sms77
 
       @api_key = api_key
       @sent_with = sent_with
-
-      HTTP_METHODS.each do |method|
-        define_singleton_method(method.name) { |*args| request(method, *args) }
-      end
+      @endpoint = self.class.get_endpoint
+      @http_methods = self.class.get_http_methods
+      @conn = Faraday.new("https://gateway.sms77.io#{BASE_PATH}")
     end
-
-    attr_reader :api_key, :sent_with
 
     protected
 
-    def request(method, path, payload = {})
-      if !payload.empty? && HTTP_GET == method
-        path = "#{path}?#{URI.encode_www_form(payload)}"
+    def request(payload = {}, query = {})
+      path = @endpoint
+      http_method = @http_methods[caller_locations.first.label.to_sym]
+
+      if :get == http_method
+        query = payload
 
         payload = {}
       end
 
-      method = method.name
+      query.each do |key, val|
+        query.store(key, Sms77::Util::to_numbered_bool(val))
+      end
+
+      payload.each do |key, val|
+        payload.store(key, Sms77::Util::to_numbered_bool(val))
+      end
+
+      unless query.empty?
+        path = "#{path}?#{URI.encode_www_form(query)}"
+      end
+
       headers = Hash[
         Faraday::Request::Authorization::KEY, "Bearer #{@api_key}",
         'sentWith', @sent_with
       ]
 
-      res = CONN.run_request(method, path, payload, headers)
+      res = @conn.run_request(http_method, path, payload, headers)
 
       puts JSON.pretty_generate(res.to_hash.merge({
-                                                    :method => method,
+                                                    :method => http_method,
                                                     :path => path,
                                                     :payload => payload,
-                                                    :req_headers => headers
+                                                    :req_headers => headers,
+                                                    :query => query,
                                                   }).compact) if ENV['SMS77_DEBUG']
 
       raise "Error requesting (#{self.class.name}) with code #{res.status}" unless 200 == res.status
@@ -70,6 +78,16 @@ module Sms77
       body.map! { |hash| hash.transform_keys(&:to_sym) } if body.is_a?(Array)
 
       body
+    end
+
+    class << self
+      def get_http_methods
+        @http_methods
+      end
+
+      def get_endpoint
+        @endpoint
+      end
     end
   end
 end

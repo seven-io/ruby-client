@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 require 'spec_helper'
-require 'sms77/endpoint'
-require 'json'
+require 'sms77/resources/pricing'
 
 RSpec.describe Sms77, 'pricing' do
   it 'returns all countries pricing as json' do
@@ -36,7 +35,8 @@ RSpec.describe Sms77, 'pricing' do
       ]
     }
 
-    res = Helper.get(Sms77::Endpoint::PRICING, stub)
+    helper = Helper.new(Sms77::Resources::Pricing)
+    res = helper.request(helper.resource.method(:retrieve), stub)
     countries = res[:countries]
 
     expect(res).to be_a(Hash)

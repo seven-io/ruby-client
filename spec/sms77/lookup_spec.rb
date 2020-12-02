@@ -3,11 +3,16 @@
 require 'spec_helper'
 require 'sms77/endpoint'
 require 'sms77/lookup'
+require 'sms77/resources/lookup'
 require 'json'
 
 RSpec.describe Sms77, 'lookup' do
   def request(type, stub, extra_args = {})
-    Helper.post(Sms77::Endpoint::LOOKUP, stub, { type: type, number: '+491771783130' }.merge(extra_args))
+    helper = Helper.new(Sms77::Resources::Lookup)
+    helper.request(
+      helper.resource.method(type),
+      stub,
+      { number: '+491771783130' }.merge(extra_args))
   end
 
   it 'misses number to lookup' do

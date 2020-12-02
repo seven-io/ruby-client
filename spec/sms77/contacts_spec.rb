@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
 require 'spec_helper'
-require 'sms77/endpoint'
 require 'sms77/contacts'
+require 'sms77/resources/contacts'
 
 RSpec.describe Sms77, 'contacts' do
   $new_contact_id = nil
+  HELPER = Helper.new(Sms77::Resources::Contacts)
 
   def assert_new(response_body)
     if response_body.is_a?(String)
@@ -38,11 +39,6 @@ RSpec.describe Sms77, 'contacts' do
     expect(number.sub('+', '')).to be_numeric
   end
 
-  def request(action, stub, extra_params = {})
-    Helper.method(Sms77::Contacts::Action::READ == action ? :get : :post)
-          .call(Sms77::Endpoint::CONTACTS, stub, { action: action }.merge(extra_params))
-  end
-
   it 'returns all contacts as CSV' do
     stub = <<~CSV
       "4848436";"";""
@@ -55,7 +51,7 @@ RSpec.describe Sms77, 'contacts' do
       "2925186";"Tom Tester";"004901234567890"
     CSV
 
-    body = request(Sms77::Contacts::Action::READ, stub)
+    body = HELPER.request(HELPER.resource.method(:read), stub)
 
     expect(body).to be_a(String)
 
@@ -76,7 +72,7 @@ RSpec.describe Sms77, 'contacts' do
       { ID: '2925186', Name: 'Tom Tester', Number: '004901234567890' }
     ]
 
-    body = request(Sms77::Contacts::Action::READ, stub, { json: 1 })
+    body = HELPER.request(HELPER.resource.method(:read), stub, { json: true })
 
     expect(body).to be_a(Array)
 
@@ -91,7 +87,7 @@ RSpec.describe Sms77, 'contacts' do
       4868400
     TEXT
 
-    body = request(Sms77::Contacts::Action::WRITE, stub)
+    body = HELPER.request(HELPER.resource.method(:write), stub, {})
 
     expect(body).to be_a(String)
 
@@ -99,11 +95,11 @@ RSpec.describe Sms77, 'contacts' do
   end
 
   it 'deletes a contact with given ID and return code' do
-    expect(request(Sms77::Contacts::Action::DEL, 152, { id: $new_contact_id })).to be_a(Integer)
+    expect(HELPER.request(HELPER.resource.method(:delete), 152, { id: $new_contact_id })).to be_a(Integer)
   end
 
   it 'creates a contact and returns its ID as JSON' do
-    body = request(Sms77::Contacts::Action::WRITE, { id: 4868401, return: '152' }, { json: 1 })
+    body = HELPER.request(HELPER.resource.method(:write), { id: 4868401, return: '152' }, { json: true })
 
     expect(body).to be_a(Hash)
 
@@ -111,7 +107,8 @@ RSpec.describe Sms77, 'contacts' do
   end
 
   it 'deletes a contact with given ID and return code as JSON' do
-    body = request(Sms77::Contacts::Action::DEL, { return: '152' }, { id: $new_contact_id, json: 1 })
+    body = HELPER.request(
+      HELPER.resource.method(:delete), { return: '152' }, { id: $new_contact_id, json: true })
 
     expect(body).to be_a(Hash)
     expect(body[:return]).to be_a(String)

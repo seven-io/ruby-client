@@ -1,64 +1,29 @@
 # frozen_string_literal: true
 
-require 'cgi'
-require 'json'
-require 'faraday'
-require 'sms77/endpoint'
-require 'sms77/contacts'
-require 'sms77/base'
+require 'sms77/resources/analytics'
+require 'sms77/resources/balance'
+require 'sms77/resources/contacts'
+require 'sms77/resources/hooks'
+require 'sms77/resources/journal'
+require 'sms77/resources/lookup'
+require 'sms77/resources/pricing'
+require 'sms77/resources/sms'
+require 'sms77/resources/status'
+require 'sms77/resources/validate_for_voice'
+require 'sms77/resources/voice'
+require 'sms77/util'
 
 module Sms77
-  class Client < Sms77::Base
-    def analytics(params = {})
-      get(Sms77::Endpoint::ANALYTICS, params)
-    end
+  class Client
+    # @param resource [Sms77::Resource]
+    def initialize(resource)
+      Sms77::Util::get_namespace_classes(Sms77::Resources).each do |cls|
+        name = cls.name.split('::').last
 
-    def balance
-      get(Sms77::Endpoint::BALANCE)
-    end
+        instance_variable_set("@#{name}", cls.new(resource))
 
-    def contacts(params)
-      get_or_post(Sms77::Contacts::Action::READ == params[:action], Sms77::Endpoint::CONTACTS, params)
-    end
-
-    def hooks(params)
-      Sms77::Hooks::Validator::validate(params)
-
-      get_or_post(Sms77::Hooks::Action::READ == params[:action], Sms77::Endpoint::HOOKS, params)
-    end
-
-    def journal(params)
-      get(Sms77::Endpoint::JOURNAL, params)
-    end
-
-    def lookup(params)
-      post(Sms77::Endpoint::LOOKUP, params)
-    end
-
-    def pricing(params = {})
-      get(Sms77::Endpoint::PRICING, params)
-    end
-
-    def sms(params)
-      post(Sms77::Endpoint::SMS, params)
-    end
-
-    def status(params)
-      get(Sms77::Endpoint::STATUS, params)
-    end
-
-    def validate_for_voice(params)
-      post(Sms77::Endpoint::VALIDATE_FOR_VOICE, params)
-    end
-
-    def voice(params)
-      post(Sms77::Endpoint::VOICE, params)
-    end
-
-    private
-
-    def get_or_post(bool, *args)
-      method(bool ? :get : :post).call(*args)
+        singleton_class.instance_eval("attr_reader :#{name}")
+      end
     end
   end
 end

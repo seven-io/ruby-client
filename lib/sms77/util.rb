@@ -1,6 +1,24 @@
 require 'date'
 
 module Sms77::Util
+  def self.to_numbered_bool(val)
+    if true == val
+      return 1
+    elsif false == val
+      return 0
+    end
+
+    return val
+  end
+
+  def self.get_namespace_members_by_type(ns, type)
+    ns.constants.map(&ns.method(:const_get)).grep(type)
+  end
+
+  def self.get_namespace_classes(ns)
+    return self.get_namespace_members_by_type(ns, Class)
+  end
+
   def self.get_module_constant_values(mod)
     mod.constants(false).map &mod.method(:const_get)
   end
