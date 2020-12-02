@@ -3,11 +3,9 @@
 # Ruby Client for the Sms77.io SMS Gateway API
 
 ## Installation
-
 ```gem install sms77```
 
 ### Usage
-
 ```ruby
 require 'sms77'
 
@@ -15,3 +13,17 @@ client = Sms77::Client.new(ENV['SMS77_API_KEY'])
 
 puts "Balance: #{client.balance}"
 ```
+
+#### Testing
+```shell
+SMS77_API_KEY=MySms77ApiKey bundle exec rspec
+```
+
+*Optional environment variables*
+
+Setting ```SMS77_DEBUG=1``` prints details to stdout.
+
+Setting ```SMS77_TEST_HTTP=1``` enables live testing with actual API requests.
+
+##### Support
+Need help? Feel free to send us an <a href='mailto: support@sms77.io'>email</a>.

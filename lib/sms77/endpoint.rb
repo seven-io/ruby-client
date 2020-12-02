@@ -5,6 +5,7 @@ module Sms77::Endpoint
   BALANCE = 'balance'
   CONTACTS = 'contacts'
   HOOKS = 'hooks'
+  JOURNAL = 'journal'
   LOOKUP = 'lookup'
   PRICING = 'pricing'
   SMS = 'sms'

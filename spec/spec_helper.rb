@@ -5,23 +5,27 @@ $LOAD_PATH.unshift File.expand_path('../lib', __dir__)
 require 'sms77'
 require 'sms77/util'
 
+RSpec::Matchers.define :be_nil_or_lengthy_string do
+  match do |val|
+    Sms77::Util::nil_or_lengthy_string?(val)
+  end
+end
+
 RSpec::Matchers.define :be_boolean do
-  match do |value|
-    [true, false].include? value
+  match do |val|
+    Sms77::Util::boolean?(val)
   end
 end
 
 RSpec::Matchers.define :be_numeric do
-  match do |value|
-    return true if value.is_a?(Integer)
-
-    value.scan(/\D/).empty?
+  match do |val|
+    Sms77::Util::numeric?(val)
   end
 end
 
-RSpec::Matchers.define :be_lengthy do
-  match do |value|
-    return true if value.is_a?(String) && !Helper.client.sent_with.empty?
+RSpec::Matchers.define :be_lengthy_string do
+  match do |val|
+    Sms77::Util::lengthy_string?(val)
   end
 end
 
@@ -43,7 +47,7 @@ end
 
 class Helper
   @client = Sms77::Client.new(ENV['SMS77_DUMMY_API_KEY'], 'ruby-test')
-  @is_http = ENV.key?('TEST_HTTP').freeze
+  @is_http = ENV['SMS77_TEST_HTTP'].freeze
   @stubs = Faraday::Adapter::Test::Stubs.new
   @virtual_inbound_nr_eplus = '+491771783130'
   Sms77::Client::BUILDER.adapter(:test, @stubs) unless @is_http

@@ -5,11 +5,11 @@ require 'sms77/endpoint'
 
 RSpec.describe Sms77, 'client' do
   it 'checks api key' do
-    expect(Helper.client.api_key).to be_lengthy(String)
+    expect(Helper.client.api_key).to be_lengthy_string
   end
 
   it 'checks sentWith' do
-    expect(Helper.client.sent_with).to be_lengthy(String)
+    expect(Helper.client.sent_with).to be_lengthy_string
   end
 
   it 'fails authentication' do

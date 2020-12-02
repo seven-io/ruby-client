@@ -27,6 +27,10 @@ module Sms77
       get_or_post(Sms77::Hooks::Action::READ == params[:action], Sms77::Endpoint::HOOKS, params)
     end
 
+    def journal(params)
+      get(Sms77::Endpoint::JOURNAL, params)
+    end
+
     def lookup(params)
       post(Sms77::Endpoint::LOOKUP, params)
     end
