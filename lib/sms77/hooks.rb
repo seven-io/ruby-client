@@ -8,6 +8,7 @@ module Sms77::Hooks
   end
 
   module EventType
+    ALL = 'all'
     NEW_INBOUND_SMS = 'sms_mo'
     SMS_STATUS_UPDATE = 'dlr'
     VOICE_STATUS_UPDATE = 'voice_status'
@@ -15,6 +16,7 @@ module Sms77::Hooks
 
   module RequestMethod
     GET = 'GET'
+    JSON = 'JSON'
     POST = 'POST'
   end
 
