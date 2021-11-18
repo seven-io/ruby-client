@@ -9,10 +9,8 @@
 ### Usage
 
 ```ruby
-require 'sms77'
+require 'sms77/client'
 
-puts Sms77::Client.new(Sms77::Resource(ENV['SMS77_API_KEY'])).Balance.retrieve
-# or
 puts Sms77::Resources::Balance.new(ENV['SMS77_API_KEY']).retrieve
 ```
 
