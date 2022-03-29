@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  File: README
+  
+    &mdash; Documentation by YARD 0.9.27
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "README";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: README</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><div id='filecontents'>
+<p><img src="https://www.sms77.io/wp-content/uploads/2019/07/sms77-Logo-400x79.png"></p>
+
+<h1 id="label-Ruby+Client+for+the+sms77+SMS+Gateway+API">Ruby Client for the <a href="https://www.sms77.io/">sms77</a> SMS Gateway API</h1>
+
+<h2 id="label-Installation">Installation</h2>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_install'>install</span> <span class='id identifier rubyid_sms77'>sms77</span>
+</code></pre>
+
+<h3 id="label-Usage">Usage</h3>
+
+<h4 id="label-Retrieve+balance">Retrieve balance</h4>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>sms77/client</span><span class='tstring_end'>&#39;</span></span>
+
+<span class='id identifier rubyid_api_key'>api_key</span> <span class='op'>=</span> <span class='const'>ENV</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>SMS77_API_KEY</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+<span class='comment'># retrieve balance
+</span><span class='id identifier rubyid_puts'>puts</span> <span class='const'><span class='object_link'><a href="Sms77.html" title="Sms77 (module)">Sms77</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Sms77/Resources.html" title="Sms77::Resources (module)">Resources</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Sms77/Resources/Balance.html" title="Sms77::Resources::Balance (class)">Balance</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Sms77/Resource.html#initialize-instance_method" title="Sms77::Resource#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_api_key'>api_key</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_retrieve'>retrieve</span>
+
+<span class='comment'># send SMS
+</span><span class='id identifier rubyid_puts'>puts</span> <span class='const'><span class='object_link'><a href="Sms77.html" title="Sms77 (module)">Sms77</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Sms77/Resources.html" title="Sms77::Resources (module)">Resources</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Sms77/Resources/Sms.html" title="Sms77::Resources::Sms (class)">Sms</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Sms77/Resource.html#initialize-instance_method" title="Sms77::Resource#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_api_key'>api_key</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_retrieve'>retrieve</span>
+</code></pre>
+
+<h4 id="label-Testing">Testing</h4>
+
+<pre class="code ruby"><code class="ruby"><span class='const'>SMS77_API_KEY</span><span class='op'>=</span><span class='const'>MySms77ApiKey</span> <span class='id identifier rubyid_bundle'>bundle</span> <span class='id identifier rubyid_exec'>exec</span> <span class='id identifier rubyid_rspec'>rspec</span>
+</code></pre>
+
+<p><em>Optional environment variables</em></p>
+
+<p>Setting <code>SMS77_DEBUG=1</code> prints details to stdout.</p>
+
+<p>Setting <code>SMS77_TEST_HTTP=1</code> enables live testing with actual API requests.</p>
+
+<h5 id="label-Support">Support</h5>
+
+<p>Need help? Feel free to <a href="https://www.sms77.io/en/company/contact/">contact us</a>.</p>
+
+<p><a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-teal.svg"></a></p>
+</div></div>
+
+      <div id="footer">
+  Generated on Tue Mar 29 14:04:39 2022 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.27 (ruby-3.1.1).
+</div>
+
+    </div>
+  </body>
+</html>

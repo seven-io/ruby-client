@@ -1,6 +1,7 @@
-![Sms77.io Logo](https://www.sms77.io/wp-content/uploads/2019/07/sms77-Logo-400x79.png "Sms77.io Logo")
+![](https://www.sms77.io/wp-content/uploads/2019/07/sms77-Logo-400x79.png "sms77 Logo")
 
-# Ruby Client for the Sms77.io SMS Gateway API
+# Ruby Client for the [sms77 SMS Gateway API](https://www.sms77.io/)
+This gem requires Ruby >= 2.6.0.
 
 ## Installation
 
@@ -8,10 +9,17 @@
 
 ### Usage
 
+#### Retrieve balance
+
 ```ruby
 require 'sms77/client'
 
-puts Sms77::Resources::Balance.new(ENV['SMS77_API_KEY']).retrieve
+api_key = ENV['SMS77_API_KEY']
+# retrieve balance
+puts Sms77::Resources::Balance.new(api_key).retrieve
+
+# send SMS
+puts Sms77::Resources::Sms.new(api_key).retrieve
 ```
 
 #### Testing
@@ -30,4 +38,4 @@ Setting ```SMS77_TEST_HTTP=1``` enables live testing with actual API requests.
 
 Need help? Feel free to [contact us](https://www.sms77.io/en/company/contact/).
 
-[![MIT](https://img.shields.io/badge/License-MIT-teal.svg)](./LICENSE)
+[![MIT](https://img.shields.io/badge/License-MIT-teal.svg)](LICENSE)
