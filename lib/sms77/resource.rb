@@ -5,6 +5,7 @@ require 'json'
 require 'faraday'
 require 'sms77/endpoint'
 
+# This module exposes a HTTP client for communication with the API.
 module Sms77
   class Resource
     attr_reader :api_key, :endpoint, :sent_with, :http_methods, :request_methods, :builder, :conn

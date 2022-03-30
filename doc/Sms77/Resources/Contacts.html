@@ -130,7 +130,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#delete-instance_method" title="#delete (instance method)">#<strong>delete</strong>(params)  &#x21d2; Object </a>
+      <a href="#delete-instance_method" title="#delete (instance method)">#<strong>delete</strong>(params)  &#x21d2; String, Hash </a>
     
 
     
@@ -144,7 +144,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Delete an account with given ID read more: <a href="https://www.sms77.io/en/docs/gateway/http-api/contacts/#delete-contacts">www.sms77.io/en/docs/gateway/http-api/contacts/#delete-contacts</a>.</p>
+</div></span>
   
 </li>
 
@@ -152,7 +154,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#read-instance_method" title="#read (instance method)">#<strong>read</strong>(params = {})  &#x21d2; Object </a>
+      <a href="#read-instance_method" title="#read (instance method)">#<strong>read</strong>(params = {})  &#x21d2; String, Hash </a>
     
 
     
@@ -166,7 +168,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Retrieve contacts associated with the API key read more: <a href="https://www.sms77.io/en/docs/gateway/http-api/contacts/#read-contacts">www.sms77.io/en/docs/gateway/http-api/contacts/#read-contacts</a>.</p>
+</div></span>
   
 </li>
 
@@ -174,7 +178,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#write-instance_method" title="#write (instance method)">#<strong>write</strong>(params)  &#x21d2; Object </a>
+      <a href="#write-instance_method" title="#write (instance method)">#<strong>write</strong>(params)  &#x21d2; String, Hash </a>
     
 
     
@@ -188,7 +192,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Create or update a contact read more: <a href="https://www.sms77.io/en/docs/gateway/http-api/contacts/#create-and-edit-contacts">www.sms77.io/en/docs/gateway/http-api/contacts/#create-and-edit-contacts</a>.</p>
+</div></span>
   
 </li>
 
@@ -222,24 +228,63 @@
       <div class="method_details first">
   <h3 class="signature first" id="delete-instance_method">
   
-    #<strong>delete</strong>(params)  &#x21d2; <tt>Object</tt> 
+    #<strong>delete</strong>(params)  &#x21d2; <tt>String</tt>, <tt>Hash</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Delete an account with given ID read more: <a href="https://www.sms77.io/en/docs/gateway/http-api/contacts/#delete-contacts">www.sms77.io/en/docs/gateway/http-api/contacts/#delete-contacts</a></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>params</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>, <tt>Hash</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-18
-19
-20</pre>
+27
+28
+29</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sms77/resources/contacts.rb', line 18</span>
+      <pre class="code"><span class="info file"># File 'lib/sms77/resources/contacts.rb', line 27</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_request'>request</span><span class='lparen'>(</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_merge'>merge</span><span class='lparen'>(</span><span class='lbrace'>{</span> <span class='symbol'>:action</span> <span class='op'>=&gt;</span> <span class='const'><span class='object_link'><a href="../../Sms77.html" title="Sms77 (module)">Sms77</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Contacts.html" title="Sms77::Contacts (module)">Contacts</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Contacts/Action.html" title="Sms77::Contacts::Action (module)">Action</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Contacts/Action.html#DEL-constant" title="Sms77::Contacts::Action::DEL (constant)">DEL</a></span></span> <span class='rbrace'>}</span><span class='rparen'>)</span><span class='rparen'>)</span>
@@ -252,24 +297,65 @@
       <div class="method_details ">
   <h3 class="signature " id="read-instance_method">
   
-    #<strong>read</strong>(params = {})  &#x21d2; <tt>Object</tt> 
+    #<strong>read</strong>(params = {})  &#x21d2; <tt>String</tt>, <tt>Hash</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Retrieve contacts associated with the API key read more: <a href="https://www.sms77.io/en/docs/gateway/http-api/contacts/#read-contacts">www.sms77.io/en/docs/gateway/http-api/contacts/#read-contacts</a></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>params</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>, <tt>Hash</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-14
-15
-16</pre>
+19
+20
+21</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sms77/resources/contacts.rb', line 14</span>
+      <pre class="code"><span class="info file"># File 'lib/sms77/resources/contacts.rb', line 19</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_read'>read</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_request'>request</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_merge'>merge</span><span class='lparen'>(</span><span class='lbrace'>{</span> <span class='symbol'>:action</span> <span class='op'>=&gt;</span> <span class='const'><span class='object_link'><a href="../../Sms77.html" title="Sms77 (module)">Sms77</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Contacts.html" title="Sms77::Contacts (module)">Contacts</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Contacts/Action.html" title="Sms77::Contacts::Action (module)">Action</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Contacts/Action.html#READ-constant" title="Sms77::Contacts::Action::READ (constant)">READ</a></span></span> <span class='rbrace'>}</span><span class='rparen'>)</span><span class='rparen'>)</span>
@@ -282,24 +368,63 @@
       <div class="method_details ">
   <h3 class="signature " id="write-instance_method">
   
-    #<strong>write</strong>(params)  &#x21d2; <tt>Object</tt> 
+    #<strong>write</strong>(params)  &#x21d2; <tt>String</tt>, <tt>Hash</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Create or update a contact read more: <a href="https://www.sms77.io/en/docs/gateway/http-api/contacts/#create-and-edit-contacts">www.sms77.io/en/docs/gateway/http-api/contacts/#create-and-edit-contacts</a></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>params</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>, <tt>Hash</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-22
-23
-24</pre>
+35
+36
+37</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sms77/resources/contacts.rb', line 22</span>
+      <pre class="code"><span class="info file"># File 'lib/sms77/resources/contacts.rb', line 35</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_request'>request</span><span class='lparen'>(</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_merge'>merge</span><span class='lparen'>(</span><span class='lbrace'>{</span> <span class='symbol'>:action</span> <span class='op'>=&gt;</span> <span class='const'><span class='object_link'><a href="../../Sms77.html" title="Sms77 (module)">Sms77</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Contacts.html" title="Sms77::Contacts (module)">Contacts</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Contacts/Action.html" title="Sms77::Contacts::Action (module)">Action</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Contacts/Action.html#WRITE-constant" title="Sms77::Contacts::Action::WRITE (constant)">WRITE</a></span></span> <span class='rbrace'>}</span><span class='rparen'>)</span><span class='rparen'>)</span>
@@ -314,9 +439,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Mar 29 14:04:40 2022 by
+  Generated on Wed Mar 30 13:55:36 2022 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.27 (ruby-3.1.1).
+  0.9.27 (ruby-2.7.4).
 </div>
 
     </div>

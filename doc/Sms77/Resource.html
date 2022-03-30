@@ -101,7 +101,7 @@
 
 <div id="subclasses">
   <h2>Direct Known Subclasses</h2>
-  <p class="children"><span class='object_link'><a href="Resources/Analytics.html" title="Sms77::Resources::Analytics (class)">Sms77::Resources::Analytics</a></span>, <span class='object_link'><a href="Resources/Balance.html" title="Sms77::Resources::Balance (class)">Sms77::Resources::Balance</a></span>, <span class='object_link'><a href="Resources/Contacts.html" title="Sms77::Resources::Contacts (class)">Sms77::Resources::Contacts</a></span>, <span class='object_link'><a href="Resources/Hooks.html" title="Sms77::Resources::Hooks (class)">Sms77::Resources::Hooks</a></span>, <span class='object_link'><a href="Resources/Journal.html" title="Sms77::Resources::Journal (class)">Sms77::Resources::Journal</a></span>, <span class='object_link'><a href="Resources/Lookup.html" title="Sms77::Resources::Lookup (class)">Sms77::Resources::Lookup</a></span>, <span class='object_link'><a href="Resources/Pricing.html" title="Sms77::Resources::Pricing (class)">Sms77::Resources::Pricing</a></span>, <span class='object_link'><a href="Resources/Sms.html" title="Sms77::Resources::Sms (class)">Sms77::Resources::Sms</a></span>, <span class='object_link'><a href="Resources/Status.html" title="Sms77::Resources::Status (class)">Sms77::Resources::Status</a></span>, <span class='object_link'><a href="Resources/ValidateForVoice.html" title="Sms77::Resources::ValidateForVoice (class)">Sms77::Resources::ValidateForVoice</a></span>, <span class='object_link'><a href="Resources/Voice.html" title="Sms77::Resources::Voice (class)">Sms77::Resources::Voice</a></span></p>
+  <p class="children"><span class='object_link'><a href="Resources/Analytics.html" title="Sms77::Resources::Analytics (class)">Sms77::Resources::Analytics</a></span>, <span class='object_link'><a href="Resources/Balance.html" title="Sms77::Resources::Balance (class)">Sms77::Resources::Balance</a></span>, <span class='object_link'><a href="Resources/Contacts.html" title="Sms77::Resources::Contacts (class)">Sms77::Resources::Contacts</a></span>, <span class='object_link'><a href="Resources/Hooks.html" title="Sms77::Resources::Hooks (class)">Sms77::Resources::Hooks</a></span>, <span class='object_link'><a href="Resources/Journal.html" title="Sms77::Resources::Journal (class)">Sms77::Resources::Journal</a></span>, <span class='object_link'><a href="Resources/Lookup.html" title="Sms77::Resources::Lookup (class)">Sms77::Resources::Lookup</a></span>, <span class='object_link'><a href="Resources/Pricing.html" title="Sms77::Resources::Pricing (class)">Sms77::Resources::Pricing</a></span>, <span class='object_link'><a href="Resources/Sms.html" title="Sms77::Resources::Sms (class)">Sms77::Resources::Sms</a></span>, <span class='object_link'><a href="Resources/Status.html" title="Sms77::Resources::Status (class)">Sms77::Resources::Status</a></span>, <span class='object_link'><a href="Resources/Subaccounts.html" title="Sms77::Resources::Subaccounts (class)">Sms77::Resources::Subaccounts</a></span>, <span class='object_link'><a href="Resources/ValidateForVoice.html" title="Sms77::Resources::ValidateForVoice (class)">Sms77::Resources::ValidateForVoice</a></span>, <span class='object_link'><a href="Resources/Voice.html" title="Sms77::Resources::Voice (class)">Sms77::Resources::Voice</a></span></p>
 </div>
 
   
@@ -453,7 +453,6 @@
       <pre class="lines">
 
 
-14
 15
 16
 17
@@ -462,10 +461,11 @@
 20
 21
 22
-23</pre>
+23
+24</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sms77/resource.rb', line 14</span>
+      <pre class="code"><span class="info file"># File 'lib/sms77/resource.rb', line 15</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_api_key'>api_key</span><span class='comma'>,</span> <span class='id identifier rubyid_sent_with'>sent_with</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ruby</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>missing api_key in config</span><span class='tstring_end'>&#39;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_api_key'>api_key</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
@@ -515,12 +515,12 @@
       <pre class="lines">
 
 
-10
 11
-12</pre>
+12
+13</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sms77/resource.rb', line 10</span>
+      <pre class="code"><span class="info file"># File 'lib/sms77/resource.rb', line 11</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_api_key'>api_key</span>
   <span class='ivar'>@api_key</span>
@@ -558,12 +558,12 @@
       <pre class="lines">
 
 
-10
 11
-12</pre>
+12
+13</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sms77/resource.rb', line 10</span>
+      <pre class="code"><span class="info file"># File 'lib/sms77/resource.rb', line 11</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_builder'>builder</span>
   <span class='ivar'>@builder</span>
@@ -601,12 +601,12 @@
       <pre class="lines">
 
 
-10
 11
-12</pre>
+12
+13</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sms77/resource.rb', line 10</span>
+      <pre class="code"><span class="info file"># File 'lib/sms77/resource.rb', line 11</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_conn'>conn</span>
   <span class='ivar'>@conn</span>
@@ -644,12 +644,12 @@
       <pre class="lines">
 
 
-10
 11
-12</pre>
+12
+13</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sms77/resource.rb', line 10</span>
+      <pre class="code"><span class="info file"># File 'lib/sms77/resource.rb', line 11</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_endpoint'>endpoint</span>
   <span class='ivar'>@endpoint</span>
@@ -687,12 +687,12 @@
       <pre class="lines">
 
 
-10
 11
-12</pre>
+12
+13</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sms77/resource.rb', line 10</span>
+      <pre class="code"><span class="info file"># File 'lib/sms77/resource.rb', line 11</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_http_methods'>http_methods</span>
   <span class='ivar'>@http_methods</span>
@@ -730,12 +730,12 @@
       <pre class="lines">
 
 
-10
 11
-12</pre>
+12
+13</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sms77/resource.rb', line 10</span>
+      <pre class="code"><span class="info file"># File 'lib/sms77/resource.rb', line 11</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_request_methods'>request_methods</span>
   <span class='ivar'>@request_methods</span>
@@ -773,12 +773,12 @@
       <pre class="lines">
 
 
-10
 11
-12</pre>
+12
+13</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sms77/resource.rb', line 10</span>
+      <pre class="code"><span class="info file"># File 'lib/sms77/resource.rb', line 11</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_sent_with'>sent_with</span>
   <span class='ivar'>@sent_with</span>
@@ -810,12 +810,12 @@
       <pre class="lines">
 
 
-88
 89
-90</pre>
+90
+91</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sms77/resource.rb', line 88</span>
+      <pre class="code"><span class="info file"># File 'lib/sms77/resource.rb', line 89</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_endpoint'>get_endpoint</span>
   <span class='ivar'>@endpoint</span>
@@ -840,12 +840,12 @@
       <pre class="lines">
 
 
-84
 85
-86</pre>
+86
+87</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sms77/resource.rb', line 84</span>
+      <pre class="code"><span class="info file"># File 'lib/sms77/resource.rb', line 85</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_http_methods'>get_http_methods</span>
   <span class='ivar'>@http_methods</span>
@@ -860,9 +860,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Mar 29 14:04:39 2022 by
+  Generated on Wed Mar 30 13:55:36 2022 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.27 (ruby-3.1.1).
+  0.9.27 (ruby-2.7.4).
 </div>
 
     </div>

@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# This module holds all utilities related to the /hooks endpoint.
 module Sms77::Hooks
   module Action
     READ = 'read'

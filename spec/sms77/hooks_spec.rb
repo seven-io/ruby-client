@@ -8,7 +8,6 @@ require 'sms77/resources/hooks'
 
 RSpec.describe Sms77, 'hooks' do
   HOOK_ID = EnvKeyStore.new('HOOK_ID')
-  HELPER = Helper.new(Sms77::Resources::Hooks)
 
   def alter_action_stub
     {
@@ -18,7 +17,9 @@ RSpec.describe Sms77, 'hooks' do
   end
 
   def request(fn, stub, extra_params = {})
-    res = HELPER.request(fn, stub, extra_params)
+    helper = Helper.new(Sms77::Resources::Hooks)
+
+    res = helper.request(helper.resource.method(fn), stub, extra_params)
 
     expect(res).to be_a(Hash)
 
@@ -33,7 +34,7 @@ RSpec.describe Sms77, 'hooks' do
   end
 
   it 'returns all hooks' do
-    res = request(HELPER.resource.method(:read), {
+    res = request(:read, {
       :code => nil,
       :hooks => [
         {
@@ -66,9 +67,10 @@ RSpec.describe Sms77, 'hooks' do
 
 =begin
   it 'subscribes' do
+    helper = Helper.new(Sms77::Resources::Hooks)
     stub = alter_action_stub.merge({ :id => rand(1...1000000) })
 
-    res = request(HELPER.resource.method(:subscribe), stub, {
+    res = request(helper.resource.method(:subscribe), stub, {
       :event_type => Sms77::Hooks::EventType::NEW_INBOUND_SMS,
       :request_method => Sms77::Hooks::RequestMethod::GET,
       :target_url => "http://ruby.tld/#{SecureRandom.uuid}"
@@ -86,8 +88,9 @@ RSpec.describe Sms77, 'hooks' do
   end
 
   it 'unsubscribes' do
+    helper = Helper.new(Sms77::Resources::Hooks)
     id = HOOK_ID.get
-    res = request(HELPER.resource.method(:unubscribe), alter_action_stub, { :id => id })
+    res = request(helper.resource.method(:unubscribe), alter_action_stub, { :id => id })
 
     assert_alter_response(res)
 

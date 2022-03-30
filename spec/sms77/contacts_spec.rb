@@ -6,7 +6,6 @@ require 'sms77/resources/contacts'
 
 RSpec.describe Sms77, 'contacts' do
   $new_contact_id = nil
-  HELPER = Helper.new(Sms77::Resources::Contacts)
 
   def assert_new(response_body)
     if response_body.is_a?(String)
@@ -51,7 +50,8 @@ RSpec.describe Sms77, 'contacts' do
       "2925186";"Tom Tester";"004901234567890"
     CSV
 
-    body = HELPER.request(HELPER.resource.method(:read), stub)
+    helper = Helper.new(Sms77::Resources::Contacts)
+    body = helper.request(helper.resource.method(:read), stub)
 
     expect(body).to be_a(String)
 
@@ -72,7 +72,8 @@ RSpec.describe Sms77, 'contacts' do
       { ID: '2925186', Name: 'Tom Tester', Number: '004901234567890' }
     ]
 
-    body = HELPER.request(HELPER.resource.method(:read), stub, { json: true })
+    helper = Helper.new(Sms77::Resources::Contacts)
+    body = helper.request(helper.resource.method(:read), stub, { json: true })
 
     expect(body).to be_a(Array)
 
@@ -87,7 +88,8 @@ RSpec.describe Sms77, 'contacts' do
       4868400
     TEXT
 
-    body = HELPER.request(HELPER.resource.method(:write), stub, {})
+    helper = Helper.new(Sms77::Resources::Contacts)
+    body = helper.request(helper.resource.method(:write), stub, {})
 
     expect(body).to be_a(String)
 
@@ -95,11 +97,13 @@ RSpec.describe Sms77, 'contacts' do
   end
 
   it 'deletes a contact with given ID and return code' do
-    expect(HELPER.request(HELPER.resource.method(:delete), 152, { id: $new_contact_id })).to be_a(Integer)
+    helper = Helper.new(Sms77::Resources::Contacts)
+    expect(helper.request(helper.resource.method(:delete), 152, { id: $new_contact_id })).to be_a(Integer)
   end
 
   it 'creates a contact and returns its ID as JSON' do
-    body = HELPER.request(HELPER.resource.method(:write), { id: 4868401, return: '152' }, { json: true })
+    helper = Helper.new(Sms77::Resources::Contacts)
+    body = helper.request(helper.resource.method(:write), { id: 4868401, return: '152' }, { json: true })
 
     expect(body).to be_a(Hash)
 
@@ -107,8 +111,17 @@ RSpec.describe Sms77, 'contacts' do
   end
 
   it 'deletes a contact with given ID and return code as JSON' do
-    body = HELPER.request(
-      HELPER.resource.method(:delete), { return: '152' }, { id: $new_contact_id, json: true })
+    helper = Helper.new(Sms77::Resources::Contacts)
+    body = helper.request(
+      helper.resource.method(:delete),
+      {
+        return: '152'
+      },
+      {
+        id: $new_contact_id,
+        json: true,
+      }
+    )
 
     expect(body).to be_a(Hash)
     expect(body[:return]).to be_a(String)

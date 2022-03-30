@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# This module holds all utilities related to the /journal endpoint.
 module Sms77::Journal
   module Type
     INBOUND = 'inbound'

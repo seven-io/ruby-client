@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# This module holds all utilities related to the /subaccounts endpoint.
 module Sms77::Subaccounts
   module Action
     CREATE = 'create'

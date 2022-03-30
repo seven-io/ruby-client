@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# This module exposes the endpoints covered by this client.
 module Sms77::Endpoint
   ANALYTICS = 'analytics'
   BALANCE = 'balance'

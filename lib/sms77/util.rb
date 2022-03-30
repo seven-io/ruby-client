@@ -1,5 +1,6 @@
 require 'date'
 
+# This module exposes general utilities used throughout the library.
 module Sms77::Util
   def self.to_numbered_bool(val)
     if true == val
