@@ -11,6 +11,8 @@ module Sms77::Hooks
     ALL = 'all'
     NEW_INBOUND_SMS = 'sms_mo'
     SMS_STATUS_UPDATE = 'dlr'
+    TRACKING = 'tracking'
+    VOICE_CALL = 'voice_call'
     VOICE_STATUS_UPDATE = 'voice_status'
   end
 
