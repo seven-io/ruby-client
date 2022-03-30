@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
+require 'spec_helper'
 require 'sms77/client'
 require 'sms77/resource'
-require 'spec_helper'
 
 RSpec.describe Sms77, 'client' do
   it 'should contain all resource modules' do

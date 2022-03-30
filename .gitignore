@@ -3,3 +3,4 @@ build/
 *.gem
 Gemfile.lock
 .ruby-gemset
+.tool-versions

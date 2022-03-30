@@ -1,7 +1,7 @@
 ![](https://www.sms77.io/wp-content/uploads/2019/07/sms77-Logo-400x79.png "sms77 Logo")
 
 # Ruby Client for the [sms77 SMS Gateway API](https://www.sms77.io/)
-This gem requires Ruby >= 2.6.0.
+This gem requires Ruby >= 2.6.0 < 3.
 
 ## Installation
 

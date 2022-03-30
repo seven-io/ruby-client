@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
+require 'spec_helper'
 require 'securerandom'
 require 'sms77/hooks'
 require 'sms77/util'
 require 'sms77/resources/hooks'
-require 'spec_helper'
 
 RSpec.describe Sms77, 'hooks' do
   HOOK_ID = EnvKeyStore.new('HOOK_ID')

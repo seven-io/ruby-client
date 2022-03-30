@@ -9,14 +9,14 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rspec', '~> 3.9'
   spec.add_runtime_dependency 'faraday', '~> 1.1'
   spec.author = 'sms77 e.K.'
-  spec.description = 'Send SMS & Text2Voice messages via the Sms77.io SMS Gateway.'
+  spec.description = 'Send SMS & text-to-speech messages via the sms77 SMS Gateway.'
   spec.email = 'support@sms77.io'
   spec.files = `git ls-files`.split("\n")
   spec.homepage = 'https://github.com/sms77io/ruby-client'
   spec.license = 'MIT'
   spec.name = 'sms77'
-  spec.required_ruby_version = '>= 2.6.0'
-  spec.summary = 'Official API Client for the Sms77.io SMS Gateway'
+  spec.required_ruby_version = '>= 2.6.0', '< 3'
+  spec.summary = 'Official API Client for the sms77 SMS Gateway'
   spec.test_files = Dir['spec/**/*']
   spec.version = Sms77::VERSION
 end
