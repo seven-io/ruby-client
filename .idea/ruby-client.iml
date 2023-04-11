@@ -5,9 +5,10 @@
   </component>
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$" />
-    <orderEntry type="jdk" jdkName="Remote-asdf: ruby-3.1.1-p18" jdkType="RUBY_SDK" />
+    <orderEntry type="jdk" jdkName="Remote: ruby-3.1.2-p20" jdkType="RUBY_SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" scope="PROVIDED" name="rake (v13.0.6, Remote-asdf: ruby-3.1.1-p18) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="bundler (v2.3.7, Remote: ruby-3.1.2-p20) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rake (v13.0.6, Remote: ruby-3.1.2-p20) [gem]" level="application" />
   </component>
   <component name="RakeTasksCache">
     <option name="myRootTask">
