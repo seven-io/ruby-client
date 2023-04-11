@@ -1,6 +1,6 @@
-![](https://www.sms77.io/wp-content/uploads/2019/07/sms77-Logo-400x79.png "sms77 Logo")
+![](https://www.seven.io/wp-content/uploads/Logo.svg "seven Logo")
 
-# Ruby Client for the [sms77 SMS Gateway API](https://www.sms77.io/)
+# Ruby Client for the [seven SMS Gateway API](https://www.seven.io/)
 This gem requires Ruby >= 2.6.0 < 3.
 
 ## Installation
@@ -36,6 +36,6 @@ Setting ```SMS77_TEST_HTTP=1``` enables live testing with actual API requests.
 
 ##### Support
 
-Need help? Feel free to [contact us](https://www.sms77.io/en/company/contact/).
+Need help? Feel free to [contact us](https://www.seven.io/en/company/contact/).
 
 [![MIT](https://img.shields.io/badge/License-MIT-teal.svg)](LICENSE)

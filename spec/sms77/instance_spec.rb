@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
+#noinspection RubyResolve
 require 'spec_helper'
 require 'sms77/resource'
 
+#noinspection RubyResolve
 RSpec.describe Sms77, 'instance' do
   helper = Helper.new(Sms77::Resource)
 
