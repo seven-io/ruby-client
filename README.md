@@ -1,7 +1,7 @@
 ![](https://www.seven.io/wp-content/uploads/Logo.svg "seven Logo")
 
 # Ruby Client for the [seven SMS Gateway API](https://www.seven.io/)
-This gem requires Ruby >= 2.6.0 < 3.
+This gem requires Ruby >= 2.6.0.
 
 ## Installation
 
