@@ -1,6 +1,6 @@
 class EnvKeyStore
   def initialize(key)
-    @key = "SMS77_TEST_#{key}"
+    @key = "SEVEN_TEST_#{key}"
 
     @store = ENV[@key]
   end

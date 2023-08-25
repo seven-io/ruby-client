@@ -5,34 +5,34 @@ This gem requires Ruby >= 2.6.0.
 
 ## Installation
 
-```gem install sms77```
+```gem install seven_api```
 
 ### Usage
 
 #### Retrieve balance
 
 ```ruby
-require 'sms77/client'
+require 'seven_api/client'
 
-api_key = ENV['SMS77_API_KEY']
+api_key = ENV['SEVEN_API_KEY']
 # retrieve balance
-puts Sms77::Resources::Balance.new(api_key).retrieve
+puts SevenApi::Resources::Balance.new(api_key).retrieve
 
 # send SMS
-puts Sms77::Resources::Sms.new(api_key).retrieve
+puts SevenApi::Resources::Sms.new(api_key).retrieve
 ```
 
 #### Testing
 
 ```shell
-SMS77_API_KEY=MySms77ApiKey bundle exec rspec
+SEVEN_API_KEY=MySevenApiKey bundle exec rspec
 ```
 
 *Optional environment variables*
 
-Setting ```SMS77_DEBUG=1``` prints details to stdout.
+Setting ```SEVEN_DEBUG=1``` prints details to stdout.
 
-Setting ```SMS77_TEST_HTTP=1``` enables live testing with actual API requests.
+Setting ```SEVEN_TEST_HTTP=1``` enables live testing with actual API requests.
 
 ##### Support
 

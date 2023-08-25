@@ -6,7 +6,7 @@
 <title>
   File: README
   
-    &mdash; Documentation by YARD 0.9.27
+    &mdash; Documentation by YARD 0.9.34
   
 </title>
 
@@ -57,54 +57,53 @@
         <div class="clear"></div>
       </div>
 
-      <div id="content"><div id='filecontents'>
-<p><img src="https://www.sms77.io/wp-content/uploads/2019/07/sms77-Logo-400x79.png"></p>
+      <div id="content"><div id='filecontents'><p><img src="https://www.seven.io/wp-content/uploads/Logo.svg" alt="" title="seven Logo" /></p>
 
-<h1 id="label-Ruby+Client+for+the+sms77+SMS+Gateway+API">Ruby Client for the <a href="https://www.sms77.io/">sms77 SMS Gateway API</a></h1>
+<h1 id="ruby-client-for-the-seven-sms-gateway-apihttpswwwsevenio">Ruby Client for the <a href="https://www.seven.io/">seven SMS Gateway API</a></h1>
+<p>This gem requires Ruby &gt;= 2.6.0.</p>
 
-<p>This gem requires Ruby &gt;= 2.6.0 &lt; 3.</p>
+<h2 id="installation">Installation</h2>
 
-<h2 id="label-Installation">Installation</h2>
+<p><code>gem install seven_api</code></p>
 
-<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_install'>install</span> <span class='id identifier rubyid_sms77'>sms77</span>
-</code></pre>
+<h3 id="usage">Usage</h3>
 
-<h3 id="label-Usage">Usage</h3>
+<h4 id="retrieve-balance">Retrieve balance</h4>
 
-<h4 id="label-Retrieve+balance">Retrieve balance</h4>
+<p>```ruby
+require ‘seven_api/client’</p>
 
-<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>sms77/client</span><span class='tstring_end'>&#39;</span></span>
+<p>api_key = ENV[‘SEVEN_API_KEY’]
+# retrieve balance
+puts SevenApi::Resources::Balance.new(api_key).retrieve</p>
 
-<span class='id identifier rubyid_api_key'>api_key</span> <span class='op'>=</span> <span class='const'>ENV</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>SMS77_API_KEY</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
-<span class='comment'># retrieve balance
-</span><span class='id identifier rubyid_puts'>puts</span> <span class='const'><span class='object_link'><a href="Sms77.html" title="Sms77 (module)">Sms77</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Sms77/Resources.html" title="Sms77::Resources (module)">Resources</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Sms77/Resources/Balance.html" title="Sms77::Resources::Balance (class)">Balance</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Sms77/Resource.html#initialize-instance_method" title="Sms77::Resource#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_api_key'>api_key</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_retrieve'>retrieve</span>
+<h1 id="send-sms">send SMS</h1>
+<p>puts SevenApi::Resources::Sms.new(api_key).retrieve
+```</p>
 
-<span class='comment'># send SMS
-</span><span class='id identifier rubyid_puts'>puts</span> <span class='const'><span class='object_link'><a href="Sms77.html" title="Sms77 (module)">Sms77</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Sms77/Resources.html" title="Sms77::Resources (module)">Resources</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Sms77/Resources/Sms.html" title="Sms77::Resources::Sms (class)">Sms</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Sms77/Resource.html#initialize-instance_method" title="Sms77::Resource#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_api_key'>api_key</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_retrieve'>retrieve</span>
-</code></pre>
+<h4 id="testing">Testing</h4>
 
-<h4 id="label-Testing">Testing</h4>
-
-<pre class="code ruby"><code class="ruby"><span class='const'>SMS77_API_KEY</span><span class='op'>=</span><span class='const'>MySms77ApiKey</span> <span class='id identifier rubyid_bundle'>bundle</span> <span class='id identifier rubyid_exec'>exec</span> <span class='id identifier rubyid_rspec'>rspec</span>
-</code></pre>
+<p><code>shell
+SEVEN_API_KEY=MySevenApiKey bundle exec rspec
+</code></p>
 
 <p><em>Optional environment variables</em></p>
 
-<p>Setting <code>SMS77_DEBUG=1</code> prints details to stdout.</p>
+<p>Setting <code>SEVEN_DEBUG=1</code> prints details to stdout.</p>
 
-<p>Setting <code>SMS77_TEST_HTTP=1</code> enables live testing with actual API requests.</p>
+<p>Setting <code>SEVEN_TEST_HTTP=1</code> enables live testing with actual API requests.</p>
 
-<h5 id="label-Support">Support</h5>
+<h5 id="support">Support</h5>
 
-<p>Need help? Feel free to <a href="https://www.sms77.io/en/company/contact/">contact us</a>.</p>
+<p>Need help? Feel free to <a href="https://www.seven.io/en/company/contact/">contact us</a>.</p>
 
-<p><a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-teal.svg"></a></p>
+<p><a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-teal.svg" alt="MIT" /></a></p>
 </div></div>
 
       <div id="footer">
-  Generated on Wed Mar 30 13:55:36 2022 by
-  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.27 (ruby-2.7.4).
+  Generated on Fri Aug 25 14:18:45 2023 by
+  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.34 (ruby-3.2.2).
 </div>
 
     </div>
