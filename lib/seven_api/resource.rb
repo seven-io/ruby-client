@@ -25,8 +25,8 @@ module SevenApi
 
     protected
 
-    def request(payload = {}, query = {})
-      path = @endpoint
+    def request(payload = {}, query = {}, path = '')
+      path = "#{@endpoint}#{path}"
       http_method = @http_methods[caller_locations.first.label.to_sym]
 
       if :get == http_method
