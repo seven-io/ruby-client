@@ -48,9 +48,13 @@ module SevenApi
       end
 
       headers = Hash[
-        Faraday::Request::Authorization::KEY, "Bearer #{@api_key}",
         'sentWith', @sent_with
       ]
+      if @api_key.start_with?('Bearer ')
+        headers.store(Faraday::Request::Authorization::KEY, @api_key)
+      else
+        headers.store('X-Api-Key', @api_key)
+      end
 
       res = @conn.run_request(http_method, path, payload, headers)
 
