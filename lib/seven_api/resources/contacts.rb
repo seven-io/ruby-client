@@ -7,33 +7,51 @@ module SevenApi::Resources
   class Contacts < SevenApi::Resource
     @endpoint = SevenApi::Endpoint::CONTACTS
     @http_methods = {
+      :all => :get,
+      :create => :post,
       :delete => :post,
-      :read => :get,
-      :write => :post,
+      :one => :get,
+      :update => :patch,
     }
 
     # Retrieve contacts associated with the API key
-    # read more: https://www.seven.io/en/docs/gateway/http-api/contacts/#read-contacts
+    # read more: https://docs.seven.io/en/rest-api/endpoints/contacts#query-contact-list
     # @param params [Hash]
-    # @return [String, Hash]
-    def read(params = {})
-      request(params.merge({ :action => SevenApi::Contacts::Action::READ }))
+    # @return [Hash]
+    def all(params = {})
+      request(params)
     end
 
-    # Delete an account with given ID
+    # Retrieve a contact associated with the API key
+    # read more: https://docs.seven.io/en/rest-api/endpoints/contacts#retrieve-contact
+    # @param id [Int]
+    # @return [Hash]
+    def one(id)
+      request({}, {}, "/#{id}")
+    end
+
+    # Delete a contact with given ID
     # read more: https://www.seven.io/en/docs/gateway/http-api/contacts/#delete-contacts
-    # @param params [Hash]
-    # @return [String, Hash]
-    def delete(params)
-      request({}, params.merge({ :action => SevenApi::Contacts::Action::DEL }))
+    # @param id [Integer]
+    # @return [Hash]
+    def delete(id)
+      request({}, {}, "/#{id}")
     end
 
-    # Create or update a contact
-    # read more: https://www.seven.io/en/docs/gateway/http-api/contacts/#create-and-edit-contacts
+    # Create a contact
+    # read more: https://docs.seven.io/en/rest-api/endpoints/contacts#create-contact
     # @param params [Hash]
-    # @return [String, Hash]
-    def write(params)
-      request({}, params.merge({ :action => SevenApi::Contacts::Action::WRITE }))
+    # @return [Hash]
+    def create(params)
+      request( params)
+    end
+
+    # Update a contact
+    # read more: https://docs.seven.io/en/rest-api/endpoints/contacts#update-contact
+    # @param contact [Hash]
+    # @return [Hash]
+    def update(contact)
+      request(contact, {}, "/#{contact['id']}")
     end
   end
 end
