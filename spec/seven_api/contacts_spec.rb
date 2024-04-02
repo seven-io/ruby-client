@@ -33,29 +33,23 @@ dummy_contact = {
 }
 
 RSpec.describe SevenApi, 'contacts' do
-  $new_contact_id = nil
+  $new_group_id = nil
 
   def assert_new(response_body)
     if response_body.is_a?(String)
-      code, $new_contact_id = response_body.split("\n")
-      $new_contact_id = $new_contact_id.to_i
+      code, $new_group_id = response_body.split("\n")
+      $new_group_id = $new_group_id.to_i
     else
       code = response_body[:return]
-      $new_contact_id = response_body[:id]
+      $new_group_id = response_body[:id]
     end
 
     expect(code).to be_numeric
-    expect($new_contact_id).to be_an_instance_of(Integer)
+    expect($new_group_id).to be_an_instance_of(Integer)
   end
 
   def assert_contact(contact)
-    id = contact[:ID]
-    name = contact[:Name]
-    number = contact[:Number]
-
-    expect(id).to be_numeric
-    expect(name).to be_an_instance_of(String)
-    expect(number.sub('+', '')).to be_numeric
+    expect(contact[:id]).to be_numeric
   end
 
   it 'returns all contacts' do

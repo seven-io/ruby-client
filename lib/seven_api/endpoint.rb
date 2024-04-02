@@ -5,6 +5,7 @@ module SevenApi::Endpoint
   ANALYTICS = 'analytics'
   BALANCE = 'balance'
   CONTACTS = 'contacts'
+  GROUPS = 'groups'
   HOOKS = 'hooks'
   JOURNAL = 'journal'
   LOOKUP = 'lookup'
