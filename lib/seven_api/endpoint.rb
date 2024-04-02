@@ -9,6 +9,7 @@ module SevenApi::Endpoint
   HOOKS = 'hooks'
   JOURNAL = 'journal'
   LOOKUP = 'lookup'
+  NUMBERS = 'numbers'
   PRICING = 'pricing'
   RCS = 'rcs'
   RCS_EVENTS = RCS + '/events'

@@ -11,14 +11,14 @@ dummy_group = {
 }
 
 RSpec.describe SevenApi, 'groups' do
-  $new_group_id = nil
+  $new_number_id = nil
 
   def assert_new(response_body)
     code = response_body[:return]
-    $new_group_id = response_body[:id]
+    $new_number_id = response_body[:id]
 
     expect(code).to be_numeric
-    expect($new_group_id).to be_an_instance_of(Integer)
+    expect($new_number_id).to be_an_instance_of(Integer)
   end
 
   def assert_group(group)

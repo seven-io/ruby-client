@@ -9,7 +9,7 @@ module SevenApi::Resources
     @http_methods = {
       :all => :get,
       :create => :post,
-      :delete => :post,
+      :delete => :delete,
       :one => :get,
       :update => :patch,
     }
