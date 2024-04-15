@@ -7,10 +7,10 @@ module SevenApi::Resources
   class Lookup < SevenApi::Resource
     @endpoint = SevenApi::Endpoint::LOOKUP
     @http_methods = {
-      :cnam => :post,
-      :format => :post,
-      :hlr => :post,
-      :mnp => :post,
+      :cnam => :get,
+      :format => :get,
+      :hlr => :get,
+      :mnp => :get,
     }
 
     # Perform a caller name lookup
