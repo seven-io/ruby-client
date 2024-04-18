@@ -48,6 +48,7 @@ module SevenApi
       end
 
       headers = Hash[
+        'Accept', 'application/json',
         'sentWith', @sent_with
       ]
       if @api_key.start_with?('Bearer ')
