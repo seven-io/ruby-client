@@ -11,7 +11,7 @@ module SevenApi::Resources
     }
 
     # Send SMS
-    # read more: https://www.seven.io/en/docs/gateway/http-api/sms-dispatch/
+    # read more: https://docs.seven.io/en/rest-api/endpoints/sms#send-sms
     # @param params [Hash]
     # @return [Integer,String,Hash]
     def retrieve(params)

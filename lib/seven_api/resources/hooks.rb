@@ -3,7 +3,7 @@
 require 'seven_api/resource'
 
 # This module exposes the methods for communicating with the API endpoint /hooks.
-# read more: https://www.seven.io/en/docs/gateway/http-api/webhooks/
+# read more: https://docs.seven.io/en/rest-api/endpoints/webhooks
 module SevenApi::Resources
   class Hooks < SevenApi::Resource
     @endpoint = SevenApi::Endpoint::HOOKS

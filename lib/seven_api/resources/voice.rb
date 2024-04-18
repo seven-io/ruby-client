@@ -11,7 +11,7 @@ module SevenApi::Resources
     }
 
     # Convert text to speech, call number and read voice message out loud.
-    # read more: https://www.seven.io/en/docs/gateway/http-api/voice/
+    # read more: https://docs.seven.io/en/rest-api/endpoints/voice#send-voice-call
     # @param params [Hash]
     # @return [String,Hash]
     def send(params)

@@ -11,7 +11,7 @@ module SevenApi::Resources
     }
 
     # Retrieve account balance for associated API key
-    # read more: https://www.seven.io/en/docs/gateway/http-api/credit-balance/
+    # read more: https://docs.seven.io/en/rest-api/endpoints/account#balance
     # @return [Float]
     def retrieve
       request

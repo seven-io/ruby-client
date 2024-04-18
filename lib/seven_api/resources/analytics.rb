@@ -11,7 +11,7 @@ module SevenApi::Resources
     }
 
     # Retrieve analytics for associated API key
-    # read more: https://www.seven.io/en/docs/gateway/http-api/analytics/
+    # read more: https://docs.seven.io/en/rest-api/endpoints/account#statistics
     # @param params [Hash]
     # @return [Array]
     def retrieve(params = {})

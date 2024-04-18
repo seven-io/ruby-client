@@ -31,7 +31,7 @@ module SevenApi::Resources
     end
 
     # Delete a contact with given ID
-    # read more: https://www.seven.io/en/docs/gateway/http-api/contacts/#delete-contacts
+    # read more: https://docs.seven.io/en/rest-api/endpoints/contacts#delete-contact
     # @param id [Integer]
     # @return [Hash]
     def delete(id)

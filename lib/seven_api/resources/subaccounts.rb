@@ -16,7 +16,7 @@ module SevenApi::Resources
     }
 
     # Create a subaccount
-    # read more: https://www.seven.io/en/docs/gateway/http-api/subaccounts/#create-subaccount
+    # read more: https://docs.seven.io/en/rest-api/endpoints/subaccounts#create-subaccount
     # @param params [Hash]
     # @return [Hash]
     def create(params)
@@ -26,7 +26,7 @@ module SevenApi::Resources
     end
 
     # Delete a subaccount
-    # read more: https://www.seven.io/en/docs/gateway/http-api/subaccounts/#delete-subaccount
+    # read more: https://docs.seven.io/en/rest-api/endpoints/subaccounts#delete-a-subaccount
     # @param params [Hash]
     # @return [Hash]
     def delete(params)
@@ -36,7 +36,7 @@ module SevenApi::Resources
     end
 
     # Retrieve all subaccounts
-    # read more: https://www.seven.io/en/docs/gateway/http-api/subaccounts/#read-subaccounts
+    # read more: https://docs.seven.io/en/rest-api/endpoints/subaccounts#list-subaccounts
     # @param params [Hash]
     # @return [Hash]
     def read(params = {})
@@ -44,7 +44,7 @@ module SevenApi::Resources
     end
 
     # Transfer credits to a subaccount
-    # read more: https://www.seven.io/en/docs/gateway/http-api/subaccounts/#transfer-credit
+    # read more: https://docs.seven.io/en/rest-api/endpoints/subaccounts#manual-credit-transfer
     # @param params [Hash]
     # @return [Hash]
     def transfer_credits(params)
@@ -54,7 +54,7 @@ module SevenApi::Resources
     end
 
     # Update automatic charging of a subaccount
-    # read more: https://www.seven.io/en/docs/gateway/http-api/subaccounts/#update-automatic-charging-of-the-subaccount
+    # read more: https://docs.seven.io/en/rest-api/endpoints/subaccounts#automatic-credit-transfer
     # @param params [Hash]
     # @return [Hash]
     def update(params)
