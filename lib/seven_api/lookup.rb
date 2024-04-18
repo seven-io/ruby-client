@@ -7,5 +7,6 @@ module SevenApi::Lookup
     FORMAT = 'format'
     HLR = 'hlr'
     MNP = 'mnp'
+    RCS = 'rcs'
   end
 end

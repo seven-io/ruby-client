@@ -61,6 +61,44 @@ RSpec.describe SevenApi, 'lookup' do
     expect(body[:success]).to be_boolean
   end
 
+  it 'returns RCS lookup capabilities' do
+    #noinspection RubyLiteralArrayInspection
+    stub = {
+      carrier: "O2",
+      country_code: "49",
+      country_iso: "DE",
+      country_name: "Germany",
+      international: "+49176123456789",
+      international_formatted: "+49 179 123456789",
+      national: "0176 12345679",
+      network_type: "mobile",
+      rcs_capabilities: [
+        'ACTION_CREATE_CALENDAR_EVENT',
+        'ACTION_DIAL',
+        'ACTION_OPEN_URL',
+        'ACTION_SHARE_LOCATION',
+        'ACTION_VIEW_LOCATION',
+        'RICHCARD_CAROUSEL',
+        'RICHCARD_STANDALONE',
+      ],
+      success: true
+    }
+
+    body = request(SevenApi::Lookup::Type::RCS, stub)
+
+    expect(body).to be_a(Hash)
+    expect(body[:carrier]).to be_a(String)
+    expect(body[:country_code]).to be_a(String)
+    expect(body[:country_iso]).to be_a(String)
+    expect(body[:country_name]).to be_a(String)
+    expect(body[:international]).to be_a(String)
+    expect(body[:international_formatted]).to be_a(String)
+    expect(body[:national]).to be_a(String)
+    expect(body[:network_type]).to be_a(String)
+    expect(body[:rcs_capabilities]).to be_a(Array)
+    expect(body[:success]).to be_boolean
+  end
+
   it 'returns CNAM details as json' do
     stub = {
       code: '100',
