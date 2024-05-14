@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'seven_api/version'
 
 Gem::Specification.new do |spec|
-  spec.add_development_dependency 'bundler', '~> 2.5'
+  spec.add_development_dependency 'bundler', '~> 2.4'
   spec.add_development_dependency 'rake', '~> 13.1'
   spec.add_development_dependency 'rspec', '~> 3.13'
   spec.add_runtime_dependency 'faraday', '~> 2.9'

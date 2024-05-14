@@ -22,9 +22,9 @@ RSpec.describe SevenApi, 'voice' do
     TEXT
 
     params = {
-      from: Helper::VIRTUAL_INBOUNDS[:eplus],
+      from: nil,
       text: text,
-      to: Helper::VIRTUAL_INBOUNDS[:eplus]
+      to: '491716992343'
     }.merge(extra_params)
 
     helper = Helper.new(SevenApi::Resources::Voice)

@@ -11,7 +11,7 @@ module SevenApi::Resources
     }
 
     # Retrieve the journal for associated API key
-    # read more: https://www.seven.io/en/docs/gateway/http-api/journal/
+    # read more: https://docs.seven.io/en/rest-api/endpoints/logbook
     # @param params [Hash]
     # @return [Array]
     def retrieve(params)

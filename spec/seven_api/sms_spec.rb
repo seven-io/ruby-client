@@ -22,9 +22,9 @@ RSpec.describe SevenApi, 'sms' do
 
   def request(stub, extra_params = {})
     params = {
-      from: Helper::VIRTUAL_INBOUNDS[:eplus],
+      from: 'seven',
       text: $text,
-      to: Helper::VIRTUAL_INBOUNDS[:eplus]
+      to: '491716992343'
     }.merge(extra_params)
 
     helper = Helper.new(SevenApi::Resources::Sms)

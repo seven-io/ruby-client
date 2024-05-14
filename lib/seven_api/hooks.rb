@@ -11,6 +11,7 @@ module SevenApi::Hooks
   module EventType
     ALL = 'all'
     NEW_INBOUND_SMS = 'sms_mo'
+    RCS = 'rcs'
     SMS_STATUS_UPDATE = 'dlr'
     TRACKING = 'tracking'
     VOICE_CALL = 'voice_call'

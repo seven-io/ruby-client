@@ -7,42 +7,58 @@ module SevenApi::Resources
   class Lookup < SevenApi::Resource
     @endpoint = SevenApi::Endpoint::LOOKUP
     @http_methods = {
-      :cnam => :post,
-      :format => :post,
-      :hlr => :post,
-      :mnp => :post,
+      :cnam => :get,
+      :format => :get,
+      :hlr => :get,
+      :mnp => :get,
+      :rcs_capabilities => :get
+    }
+    PATHS = {
+      :cnam => '/cnam',
+      :format => '/format',
+      :hlr => '/hlr',
+      :mnp => '/mnp',
+      :rcs_capabilities => '/rcs'
     }
 
     # Perform a caller name lookup
-    # read more: https://www.seven.io/en/docs/gateway/http-api/cnam-lookup/
-    # @param params [Hash]
+    # read more: https://docs.seven.io/en/rest-api/endpoints/lookup#cnam
+    # @param number [String]
     # @return [Hash,Array]
-    def cnam(params)
-      request(params.merge({ :type => SevenApi::Lookup::Type::CNAM }))
+    def cnam(number)
+      request({}, {number: number}, PATHS[:cnam])
     end
 
     # Retrieve phone number formats
-    # read more: https://www.seven.io/en/docs/gateway/http-api/nummernformat-lookup/
-    # @param params [Hash]
+    # read more: https://docs.seven.io/en/rest-api/endpoints/lookup#format
+    # @param number [String]
     # @return [String,Hash]
-    def format(params)
-      request(params.merge({ :type => SevenApi::Lookup::Type::FORMAT }))
+    def format(number)
+      request({}, {number: number}, PATHS[:format])
     end
 
     # Perform a home location register lookup
-    # read more: https://www.seven.io/en/docs/gateway/http-api/hlr-lookup/
-    # @param params [Hash]
+    # read more: https://docs.seven.io/en/rest-api/endpoints/lookup#hlr
+    # @param number [String]
     # @return [Hash,Array]
-    def hlr(params)
-      request(params.merge({ :type => SevenApi::Lookup::Type::HLR }))
+    def hlr(number)
+      request({}, {number: number}, PATHS[:hlr])
     end
 
     # Perform a mobile number portability lookup
-    # read more: https://www.seven.io/en/docs/gateway/http-api/mnp-lookup/
-    # @param params [Hash]
+    # read more: https://docs.seven.io/en/rest-api/endpoints/lookup#mnp
+    # @param number [String]
     # @return [Hash,Array]
-    def mnp(params)
-      request(params.merge({ :type => SevenApi::Lookup::Type::MNP }))
+    def mnp(number)
+      request({}, {number: number}, PATHS[:mnp])
+    end
+
+    # Perform a RCS capabilities lookup
+    # read more: https://docs.seven.io/en/rest-api/endpoints/lookup#rcs-capabilities
+    # @param number [String]
+    # @return [Hash,Array]
+    def rcs_capabilities(number)
+      request({}, {number: number}, PATHS[:rcs])
     end
   end
 end

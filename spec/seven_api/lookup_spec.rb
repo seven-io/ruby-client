@@ -7,12 +7,10 @@ require 'seven_api/resources/lookup'
 require 'json'
 
 RSpec.describe SevenApi, 'lookup' do
-  def request(type, stub, extra_args = {})
-    helper = Helper.new(SevenApi::Resources::Lookup)
-    helper.request(
-      helper.resource.method(type),
-      stub,
-      { number: '+491771783130' }.merge(extra_args))
+  helper = Helper.new(SevenApi::Resources::Lookup)
+
+  def request(type, stub, params = { number: '+491771783130' })
+    helper.request(helper.resource.method(type), stub, params)
   end
 
   it 'misses number to lookup' do
@@ -27,14 +25,14 @@ RSpec.describe SevenApi, 'lookup' do
       network_type: nil,
       success: false
     }
-
-    res = request(SevenApi::Lookup::Type::FORMAT, stub, { number: '' })
+    path = SevenApi::Resources::Lookup.const_get('PATHS')[:format]
+    res = helper.request(helper.resource.method(:format), stub, { number: '' }, path)
 
     expect(res).to be_a(Hash)
     expect(res[:success]).to match(false)
   end
 
-  it 'returns number formatting details as json' do
+  it 'returns number formatting details' do
     stub = {
       carrier: 'Eplus',
       country_code: '49',
@@ -46,29 +44,41 @@ RSpec.describe SevenApi, 'lookup' do
       network_type: 'mobile',
       success: true
     }
+    path = SevenApi::Resources::Lookup.const_get('PATHS')[:format]
+    body = helper.request(helper.resource.method(:format), stub, { number: '+491771783130' }, path)
 
-    body = request(SevenApi::Lookup::Type::FORMAT, stub)
-
-    expect(body).to be_a(Hash)
-    expect(body[:carrier]).to be_a(String)
-    expect(body[:country_code]).to be_a(String)
-    expect(body[:country_iso]).to be_a(String)
-    expect(body[:country_name]).to be_a(String)
-    expect(body[:international]).to be_a(String)
-    expect(body[:international_formatted]).to be_a(String)
-    expect(body[:national]).to be_a(String)
-    expect(body[:network_type]).to be_a(String)
-    expect(body[:success]).to be_boolean
+    assert_format(body)
   end
 
-  it 'returns CNAM details as json' do
+  it 'returns RCS lookup capabilities' do
+    stub = {
+      carrier: "O2",
+      country_code: "49",
+      country_iso: "DE",
+      country_name: "Germany",
+      international: "+49176123456789",
+      international_formatted: "+49 179 123456789",
+      national: "0176 12345679",
+      network_type: "mobile",
+      rcs_capabilities: %w[ACTION_CREATE_CALENDAR_EVENT ACTION_DIAL ACTION_OPEN_URL ACTION_SHARE_LOCATION ACTION_VIEW_LOCATION RICHCARD_CAROUSEL RICHCARD_STANDALONE],
+      success: true
+    }
+    path = SevenApi::Resources::Lookup.const_get('PATHS')[:rcs_capabilities]
+    body = helper.request(helper.resource.method(:rcs_capabilities), stub, { number: '+491771783130' }, path)
+
+    assert_format(body)
+    expect(body[:rcs_capabilities]).to be_a(Array)
+  end
+
+  it 'returns CNAM details' do
     stub = {
       code: '100',
       name: 'GERMANY',
       number: '+491771783130',
       success: 'true'
     }
-    body = request(SevenApi::Lookup::Type::CNAM, stub)
+    path = SevenApi::Resources::Lookup.const_get('PATHS')[:cnam]
+    body = helper.request(helper.resource.method(:cnam), stub, { number: '+491771783130' }, path)
 
     expect(body).to be_a(Hash)
     expect(body[:code]).to be_a(String)
@@ -77,13 +87,7 @@ RSpec.describe SevenApi, 'lookup' do
     expect(body[:success]).to be_a(String)
   end
 
-  it 'returns MNP details as text' do
-    body = request(SevenApi::Lookup::Type::MNP, 'eplus')
-
-    expect(body).to be_a(String)
-  end
-
-  it 'returns MNP details as json' do
+  it 'returns MNP details' do
     stub = {
       code: 100,
       mnp: {
@@ -98,7 +102,8 @@ RSpec.describe SevenApi, 'lookup' do
       price: 0.005,
       success: true
     }
-    body = request(SevenApi::Lookup::Type::MNP, stub, { json: 1 })
+    path = SevenApi::Resources::Lookup.const_get('PATHS')[:mnp]
+    body = helper.request(helper.resource.method(:mnp), stub, { number: '+491771783130' }, path)
 
     expect(body).to be_a(Hash)
     expect(body[:code]).to be_a(Integer)
@@ -114,7 +119,7 @@ RSpec.describe SevenApi, 'lookup' do
     expect(body[:success]).to be_boolean
   end
 
-  it 'returns HLR details as json' do
+  it 'returns HLR details' do
     stub = {
       country_code: 'DE',
       country_name: 'Germany',
@@ -145,8 +150,8 @@ RSpec.describe SevenApi, 'lookup' do
       roaming: 'not_roaming',
       valid_number: 'valid'
     }
-
-    body = request(SevenApi::Lookup::Type::HLR, stub)
+    path = SevenApi::Resources::Lookup.const_get('PATHS')[:hlr]
+    body = helper.request(helper.resource.method(:hlr), stub, { number: '+491771783130' }, path)
 
     expect(body).to be_a(Hash)
     expect(body[:country_code]).to be_a(String)
@@ -175,5 +180,18 @@ RSpec.describe SevenApi, 'lookup' do
     expect(hash[:name]).to be_a(String)
     expect(hash[:network_code]).to be_a(String)
     expect(hash[:network_type]).to be_a(String)
+  end
+
+  def assert_format(body)
+    expect(body).to be_a(Hash)
+    expect(body[:carrier]).to be_a(String)
+    expect(body[:country_code]).to be_a(String)
+    expect(body[:country_iso]).to be_a(String)
+    expect(body[:country_name]).to be_a(String)
+    expect(body[:international]).to be_a(String)
+    expect(body[:international_formatted]).to be_a(String)
+    expect(body[:national]).to be_a(String)
+    expect(body[:network_type]).to be_a(String)
+    expect(body[:success]).to be_boolean
   end
 end

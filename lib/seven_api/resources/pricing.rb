@@ -11,7 +11,7 @@ module SevenApi::Resources
     }
 
     # Retrieve pricing
-    # read more: https://www.seven.io/en/docs/gateway/http-api/pricing/
+    # read more: https://docs.seven.io/en/rest-api/endpoints/account#prices
     # @param params [Hash]
     # @return [Hash,String]
     def retrieve(params = {})

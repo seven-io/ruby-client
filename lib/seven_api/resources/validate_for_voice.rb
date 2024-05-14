@@ -11,7 +11,7 @@ module SevenApi::Resources
     }
 
     # Validate a phone number for using it as caller ID via our voice API
-    # read more: https://www.seven.io/en/docs/gateway/http-api/caller-ids/
+    # read more: https://docs.seven.io/en/rest-api/endpoints/sender-identifiers#validate-sender-for-voice
     # @param params [Hash]
     # @return [Hash]
     def retrieve(params)

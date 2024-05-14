@@ -2,10 +2,10 @@
 
 require 'seven_api/resource'
 
-# This module exposes the methods for communicating with the API endpoint /contacts.
+# This module exposes the methods for communicating with the API endpoint /groups.
 module SevenApi::Resources
-  class Contacts < SevenApi::Resource
-    @endpoint = SevenApi::Endpoint::CONTACTS
+  class Groups < SevenApi::Resource
+    @endpoint = SevenApi::Endpoint::GROUPS
     @http_methods = {
       :all => :get,
       :create => :post,
@@ -15,7 +15,7 @@ module SevenApi::Resources
     }
 
     # Retrieve contacts associated with the API key
-    # read more: https://docs.seven.io/en/rest-api/endpoints/contacts#query-contact-list
+    # read more: https://docs.seven.io/en/rest-api/endpoints/groups#list-all-groups
     # @param params [Hash]
     # @return [Hash]
     def all(params = {})
@@ -23,7 +23,7 @@ module SevenApi::Resources
     end
 
     # Retrieve a contact associated with the API key
-    # read more: https://docs.seven.io/en/rest-api/endpoints/contacts#retrieve-contact
+    # read more: https://docs.seven.io/en/rest-api/endpoints/groups#retrieve-a-group
     # @param id [Int]
     # @return [Hash]
     def one(id)
@@ -31,7 +31,7 @@ module SevenApi::Resources
     end
 
     # Delete a contact with given ID
-    # read more: https://docs.seven.io/en/rest-api/endpoints/contacts#delete-contact
+    # read more: https://docs.seven.io/en/rest-api/endpoints/groups#delete-group
     # @param id [Integer]
     # @return [Hash]
     def delete(id)
@@ -39,7 +39,7 @@ module SevenApi::Resources
     end
 
     # Create a contact
-    # read more: https://docs.seven.io/en/rest-api/endpoints/contacts#create-contact
+    # read more: https://docs.seven.io/en/rest-api/endpoints/groups#create-group
     # @param params [Hash]
     # @return [Hash]
     def create(params)
@@ -47,7 +47,7 @@ module SevenApi::Resources
     end
 
     # Update a contact
-    # read more: https://docs.seven.io/en/rest-api/endpoints/contacts#update-contact
+    # read more: https://docs.seven.io/en/rest-api/endpoints/groups#update-a-group
     # @param contact [Hash]
     # @return [Hash]
     def update(contact)

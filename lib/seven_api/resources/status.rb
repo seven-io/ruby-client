@@ -11,7 +11,7 @@ module SevenApi::Resources
     }
 
     # Retrieve delivery report for a SMS
-    # read more: https://www.seven.io/en/docs/gateway/http-api/status-reports/#query-delivery-reports
+    # read more: https://docs.seven.io/en/rest-api/endpoints/status-reports#query-status-reports
     # @param params [Hash]
     # @return [String]
     def retrieve(params)
