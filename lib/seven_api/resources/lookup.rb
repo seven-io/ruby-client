@@ -11,6 +11,14 @@ module SevenApi::Resources
       :format => :get,
       :hlr => :get,
       :mnp => :get,
+      :rcs_capabilities => :get
+    }
+    PATHS = {
+      :cnam => '/cnam',
+      :format => '/format',
+      :hlr => '/hlr',
+      :mnp => '/mnp',
+      :rcs_capabilities => '/rcs'
     }
 
     # Perform a caller name lookup
@@ -18,7 +26,7 @@ module SevenApi::Resources
     # @param number [String]
     # @return [Hash,Array]
     def cnam(number)
-      request({}, {number: number}, "/cnam")
+      request({}, {number: number}, PATHS[:cnam])
     end
 
     # Retrieve phone number formats
@@ -26,7 +34,7 @@ module SevenApi::Resources
     # @param number [String]
     # @return [String,Hash]
     def format(number)
-      request({}, {number: number}, "/format")
+      request({}, {number: number}, PATHS[:format])
     end
 
     # Perform a home location register lookup
@@ -34,7 +42,7 @@ module SevenApi::Resources
     # @param number [String]
     # @return [Hash,Array]
     def hlr(number)
-      request({}, {number: number}, "/hlr")
+      request({}, {number: number}, PATHS[:hlr])
     end
 
     # Perform a mobile number portability lookup
@@ -42,7 +50,7 @@ module SevenApi::Resources
     # @param number [String]
     # @return [Hash,Array]
     def mnp(number)
-      request({}, {number: number}, "/mnp")
+      request({}, {number: number}, PATHS[:mnp])
     end
 
     # Perform a RCS capabilities lookup
@@ -50,7 +58,7 @@ module SevenApi::Resources
     # @param number [String]
     # @return [Hash,Array]
     def rcs_capabilities(number)
-      request({}, {number: number}, "/rcs")
+      request({}, {number: number}, PATHS[:rcs])
     end
   end
 end
