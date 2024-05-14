@@ -12,9 +12,6 @@ class Helper
   attr_reader :resource
 
   IS_HTTP = (ENV['SEVEN_TEST_HTTP'].nil? ? false : true).freeze
-  VIRTUAL_INBOUNDS = {
-    eplus: '+491771783130',
-  }.freeze
 
   # @param resource [Class<SevenApi::Resource>]
   def initialize(resource)
@@ -29,6 +26,8 @@ class Helper
   def create_stub(fn_name, stub, path)
     http_fn = @resource.http_methods[fn_name]
     puts "creating stub for #{http_fn} @ #{@resource.class.name}.#{fn_name}"
+
+    puts SevenApi::Resource::BASE_PATH + @resource.endpoint + path
 
     @stubs.method(http_fn).call(SevenApi::Resource::BASE_PATH + @resource.endpoint + path) do
       puts "stub: " + stub.inspect

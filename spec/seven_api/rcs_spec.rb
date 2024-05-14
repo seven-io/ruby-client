@@ -9,7 +9,7 @@ RSpec.describe SevenApi, 'rcs' do
   def dispatch(stub, extra_params = {})
     params = {
       text: 'Your glasses are ready for pickup.',
-      to: Helper::VIRTUAL_INBOUNDS[:eplus]
+      to: '491716992343'
     }.merge(extra_params)
 
     $helper.request($helper.resource.method(:dispatch), stub, params, '/messages')

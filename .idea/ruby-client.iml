@@ -7,8 +7,20 @@
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/doc" />
     </content>
-    <orderEntry type="jdk" jdkName="Remote: ruby-3.1.2-p20" jdkType="RUBY_SDK" />
+    <orderEntry type="jdk" jdkName="Remote-asdf: ruby-3.1.4-p223" jdkType="RUBY_SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" scope="PROVIDED" name="bundler (v2.5.6, Remote-asdf: ruby-3.1.4-p223) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="diff-lcs (v1.5.1, Remote-asdf: ruby-3.1.4-p223) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="faraday (v2.9.0, Remote-asdf: ruby-3.1.4-p223) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="faraday-net_http (v3.1.0, Remote-asdf: ruby-3.1.4-p223) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="net-http (v0.4.1, Remote-asdf: ruby-3.1.4-p223) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rake (v13.1.0, Remote-asdf: ruby-3.1.4-p223) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rspec (v3.13.0, Remote-asdf: ruby-3.1.4-p223) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rspec-core (v3.13.0, Remote-asdf: ruby-3.1.4-p223) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rspec-expectations (v3.13.0, Remote-asdf: ruby-3.1.4-p223) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rspec-mocks (v3.13.0, Remote-asdf: ruby-3.1.4-p223) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rspec-support (v3.13.1, Remote-asdf: ruby-3.1.4-p223) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="uri (v0.13.0, Remote-asdf: ruby-3.1.4-p223) [gem]" level="application" />
   </component>
   <component name="RakeTasksCache">
     <option name="myRootTask">
