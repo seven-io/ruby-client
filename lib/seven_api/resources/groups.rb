@@ -14,7 +14,7 @@ module SevenApi::Resources
       :update => :patch,
     }
 
-    # Retrieve contacts associated with the API key
+    # Retrieve groups associated with the API key
     # read more: https://docs.seven.io/en/rest-api/endpoints/groups#list-all-groups
     # @param params [Hash]
     # @return [Hash]
@@ -22,7 +22,7 @@ module SevenApi::Resources
       request(params)
     end
 
-    # Retrieve a contact associated with the API key
+    # Retrieve a group associated with the API key
     # read more: https://docs.seven.io/en/rest-api/endpoints/groups#retrieve-a-group
     # @param id [Int]
     # @return [Hash]
@@ -30,7 +30,7 @@ module SevenApi::Resources
       request({}, {}, "/#{id}")
     end
 
-    # Delete a contact with given ID
+    # Delete a group with given ID
     # read more: https://docs.seven.io/en/rest-api/endpoints/groups#delete-group
     # @param id [Integer]
     # @return [Hash]
@@ -38,7 +38,7 @@ module SevenApi::Resources
       request({}, {}, "/#{id}")
     end
 
-    # Create a contact
+    # Create a group
     # read more: https://docs.seven.io/en/rest-api/endpoints/groups#create-group
     # @param params [Hash]
     # @return [Hash]
@@ -46,7 +46,7 @@ module SevenApi::Resources
       request( params)
     end
 
-    # Update a contact
+    # Update a group
     # read more: https://docs.seven.io/en/rest-api/endpoints/groups#update-a-group
     # @param contact [Hash]
     # @return [Hash]
