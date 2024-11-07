@@ -4,7 +4,7 @@ require 'seven_api/resource'
 
 # This module exposes the methods for communicating with the API endpoint /numbers.
 module SevenApi::Resources
-  class Groups < SevenApi::Resource
+  class Numbers < SevenApi::Resource
     @endpoint = SevenApi::Endpoint::NUMBERS
     @http_methods = {
       :active => :get,
