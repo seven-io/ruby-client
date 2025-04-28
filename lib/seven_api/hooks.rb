@@ -15,6 +15,7 @@ module SevenApi::Hooks
     SMS_STATUS_UPDATE = 'dlr'
     TRACKING = 'tracking'
     VOICE_CALL = 'voice_call'
+    VOICE_DTMF = 'voice_dtmf'
     VOICE_STATUS_UPDATE = 'voice_status'
   end
 
