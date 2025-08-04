@@ -22,7 +22,7 @@ module SevenApi::Resources
     def create(params)
       SevenApi::Subaccounts::Validator::create(params)
 
-      request(params.merge({ :action => SevenApi::Subaccounts::Action::CREATE }))
+      request(:post, params.merge({ :action => SevenApi::Subaccounts::Action::CREATE }))
     end
 
     # Delete a subaccount
@@ -32,7 +32,7 @@ module SevenApi::Resources
     def delete(params)
       SevenApi::Subaccounts::Validator::delete(params)
 
-      request(params.merge({ :action => SevenApi::Subaccounts::Action::DELETE }))
+      request(:post, params.merge({ :action => SevenApi::Subaccounts::Action::DELETE }))
     end
 
     # Retrieve all subaccounts
@@ -40,7 +40,7 @@ module SevenApi::Resources
     # @param params [Hash]
     # @return [Hash]
     def read(params = {})
-      request({}, params.merge({ :action => SevenApi::Subaccounts::Action::READ }))
+      request(:get, {}, params.merge({ :action => SevenApi::Subaccounts::Action::READ }))
     end
 
     # Transfer credits to a subaccount
@@ -50,7 +50,7 @@ module SevenApi::Resources
     def transfer_credits(params)
       SevenApi::Subaccounts::Validator::transfer_credits(params)
 
-      request(params.merge({ :action => SevenApi::Subaccounts::Action::TRANSFER_CREDITS }))
+      request(:post, params.merge({ :action => SevenApi::Subaccounts::Action::TRANSFER_CREDITS }))
     end
 
     # Update automatic charging of a subaccount
@@ -60,7 +60,7 @@ module SevenApi::Resources
     def update(params)
       SevenApi::Subaccounts::Validator::update(params)
 
-      request(params.merge({ :action => SevenApi::Subaccounts::Action::UPDATE }))
+      request(:post, params.merge({ :action => SevenApi::Subaccounts::Action::UPDATE }))
     end
   end
 end

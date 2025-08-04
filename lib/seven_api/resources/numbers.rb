@@ -9,6 +9,7 @@ module SevenApi::Resources
     @http_methods = {
       :active => :get,
       :available => :get,
+      :delete => :delete,
       :order => :post,
       :one => :get,
       :update => :patch,
@@ -18,7 +19,7 @@ module SevenApi::Resources
     # read more: https://docs.seven.io/en/rest-api/endpoints/numbers#active-numbers
     # @return [Array]
     def active
-      request({}, {}, '/active')
+      request(:get, {}, {}, '/active')
     end
 
 
@@ -26,7 +27,7 @@ module SevenApi::Resources
     # read more: https://docs.seven.io/en/rest-api/endpoints/numbers#available-numbers
     # @return [Hash]
     def available
-      request(params, {}, '/available')
+      request(:get, params, {}, '/available')
     end
 
     # Order a phone number
@@ -39,7 +40,7 @@ module SevenApi::Resources
         number => number,
         payment_interval => payment_interval,
       }
-      request(payload, {}, '/order')
+      request(:post, payload, {}, '/order')
     end
 
     # Delete a number
@@ -47,7 +48,7 @@ module SevenApi::Resources
     # @param number [String]
     # @return [Hash]
     def delete(number, delete_immediately = false)
-      request({}, {delete_immediately => delete_immediately}, "/active/#{number}")
+      request(:delete, {}, {delete_immediately => delete_immediately}, "/active/#{number}")
     end
 
     # Retrieve a number
@@ -55,7 +56,7 @@ module SevenApi::Resources
     # @param number [String]
     # @return [Hash]
     def one(number)
-      request({}, {}, "/active/#{number}")
+      request(:get, {}, {}, "/active/#{number}")
     end
 
     # Update a number
@@ -64,7 +65,7 @@ module SevenApi::Resources
     # @param params [Hash]
     # @return [Hash]
     def update(number, params)
-      request(params, {}, "/active/#{number}")
+      request(:patch, params, {}, "/active/#{number}")
     end
   end
 end

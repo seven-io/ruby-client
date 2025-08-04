@@ -17,7 +17,7 @@ module SevenApi::Resources
     # @param params [Hash]
     # @return [Hash]
     def read(params = {})
-      request(params.merge({ :action => SevenApi::Hooks::Action::READ }))
+      request(:get, params.merge({ :action => SevenApi::Hooks::Action::READ }))
     end
 
     # Register a new webhook
@@ -26,7 +26,7 @@ module SevenApi::Resources
     def subscribe(params)
       SevenApi::Hooks::Validator::subscribe(params)
 
-      request(params.merge({ :action => SevenApi::Hooks::Action::SUBSCRIBE }))
+      request(:post, params.merge({ :action => SevenApi::Hooks::Action::SUBSCRIBE }))
     end
 
     # Delete a webhook
@@ -35,7 +35,7 @@ module SevenApi::Resources
     def unsubscribe(params)
       SevenApi::Hooks::Validator::unsubscribe(params)
 
-      request(params.merge({ :action => SevenApi::Hooks::Action::UNSUBSCRIBE }))
+      request(:post, params.merge({ :action => SevenApi::Hooks::Action::UNSUBSCRIBE }))
     end
   end
 end

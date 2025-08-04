@@ -14,7 +14,7 @@ module SevenApi::Resources
     # read more: https://docs.seven.io/en/rest-api/endpoints/account#balance
     # @return [Hash]
     def retrieve
-      request
+      request(:get)
     end
   end
 end

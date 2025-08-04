@@ -16,7 +16,7 @@ module SevenApi::Resources
     # @param ids [Array]
     # @return [Hash]
     def delete(ids)
-      request(ids)
+      request(:delete, ids)
     end
 
     # Send SMS
@@ -24,7 +24,7 @@ module SevenApi::Resources
     # @param params [Hash]
     # @return [Integer,String,Hash]
     def retrieve(params)
-      request(params)
+      request(:post, params)
     end
   end
 end

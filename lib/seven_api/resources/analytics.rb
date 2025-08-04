@@ -24,7 +24,7 @@ module SevenApi::Resources
     # @param params [Hash]
     # @return [Array]
     def by_country(params = {})
-      request({}, params, PATHS[:by_country])
+      request(:get, {}, params, PATHS[:by_country])
     end
 
     # Retrieve analytics grouped by date
@@ -32,7 +32,7 @@ module SevenApi::Resources
     # @param params [Hash]
     # @return [Array]
     def by_date(params = {})
-      request({}, params, PATHS[:by_date])
+      request(:get,{}, params, PATHS[:by_date])
     end
 
     # Retrieve analytics grouped by label
@@ -40,7 +40,7 @@ module SevenApi::Resources
     # @param params [Hash]
     # @return [Array]
     def by_label(params = {})
-      request({}, params, PATHS[:by_label])
+      request(:get,{}, params, PATHS[:by_label])
     end
 
     # Retrieve analytics grouped by subaccount
@@ -48,7 +48,7 @@ module SevenApi::Resources
     # @param params [Hash]
     # @return [Array]
     def by_subaccount(params = {})
-      request({}, params, PATHS[:by_subaccount])
+      request(:get,{}, params, PATHS[:by_subaccount])
     end
   end
 end

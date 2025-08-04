@@ -19,7 +19,7 @@ module SevenApi::Resources
     # @param params [Hash]
     # @return [Hash]
     def all(params = {})
-      request(params)
+      request(:get, params)
     end
 
     # Retrieve a contact associated with the API key
@@ -27,7 +27,7 @@ module SevenApi::Resources
     # @param id [Int]
     # @return [Hash]
     def one(id)
-      request({}, {}, "/#{id}")
+      request(:get,{}, {}, "/#{id}")
     end
 
     # Delete a contact with given ID
@@ -43,7 +43,7 @@ module SevenApi::Resources
     # @param params [Hash]
     # @return [Hash]
     def create(params)
-      request( params)
+      request( :post, params)
     end
 
     # Update a contact
@@ -51,7 +51,7 @@ module SevenApi::Resources
     # @param contact [Hash]
     # @return [Hash]
     def update(contact)
-      request(contact, {}, "/#{contact['id']}")
+      request(:patch, contact, {}, "/#{contact['id']}")
     end
   end
 end

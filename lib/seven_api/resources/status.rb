@@ -15,7 +15,7 @@ module SevenApi::Resources
     # @param params [Hash]
     # @return [String]
     def retrieve(params)
-      request(params)
+      request(:get, params)
     end
   end
 end

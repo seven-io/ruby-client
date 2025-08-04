@@ -17,7 +17,7 @@ module SevenApi::Resources
     # @param params [Hash]
     # @return [Hash]
     def dispatch(params)
-      request(params, {}, '/messages')
+      request(:post, params, {}, '/messages')
     end
 
     # Delete scheduled RCS
@@ -25,7 +25,7 @@ module SevenApi::Resources
     # @param params [Hash]
     # @return [Hash]
     def delete(params)
-      request({}, {}, "/messages/#{params[:id]}")
+      request(:delete, {}, {}, "/messages/#{params[:id]}")
     end
 
     # Send Event
@@ -33,7 +33,7 @@ module SevenApi::Resources
     # @param params [Hash]
     # @return [Hash]
     def event(params)
-      request(params, {}, '/events')
+      request(:post, params, {}, '/events')
     end
   end
 end

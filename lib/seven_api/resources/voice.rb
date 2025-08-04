@@ -16,7 +16,7 @@ module SevenApi::Resources
     # @param call_id [String]
     # @return Hash
     def hangup(call_id)
-      request({}, {}, "/#{call_id}/hangup")
+      request(:post, {}, {}, "/#{call_id}/hangup")
     end
 
     # Convert text to speech, call number and read voice message out loud.
@@ -24,7 +24,7 @@ module SevenApi::Resources
     # @param params [Hash]
     # @return [String,Hash]
     def send(params)
-      request(params)
+      request(:post, params)
     end
   end
 end
