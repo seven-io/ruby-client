@@ -7,22 +7,22 @@
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/doc" />
     </content>
-    <orderEntry type="jdk" jdkName="asdf: 3.3.5" jdkType="RUBY_SDK" />
+    <orderEntry type="jdk" jdkName="rbenv: 3.4.4" jdkType="RUBY_SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" scope="PROVIDED" name="bundler (v2.5.23, asdf: 3.3.5) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="diff-lcs (v1.5.1, asdf: 3.3.5) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="faraday (v2.12.0, asdf: 3.3.5) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="faraday-net_http (v3.3.0, asdf: 3.3.5) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="json (v2.8.1, asdf: 3.3.5) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="logger (v1.6.1, asdf: 3.3.5) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="net-http (v0.5.0, asdf: 3.3.5) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="rake (v13.2.1, asdf: 3.3.5) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="rspec (v3.13.0, asdf: 3.3.5) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="rspec-core (v3.13.2, asdf: 3.3.5) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="rspec-expectations (v3.13.3, asdf: 3.3.5) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="rspec-mocks (v3.13.2, asdf: 3.3.5) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="rspec-support (v3.13.1, asdf: 3.3.5) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="uri (v1.0.0, asdf: 3.3.5) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="bundler (v2.5.23, rbenv: 3.4.4) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="diff-lcs (v1.5.1, rbenv: 3.4.4) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="faraday (v2.12.0, rbenv: 3.4.4) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="faraday-net_http (v3.3.0, rbenv: 3.4.4) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="json (v2.8.1, rbenv: 3.4.4) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="logger (v1.6.1, rbenv: 3.4.4) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="net-http (v0.5.0, rbenv: 3.4.4) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rake (v13.2.1, rbenv: 3.4.4) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rspec (v3.13.0, rbenv: 3.4.4) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rspec-core (v3.13.2, rbenv: 3.4.4) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rspec-expectations (v3.13.3, rbenv: 3.4.4) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rspec-mocks (v3.13.2, rbenv: 3.4.4) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rspec-support (v3.13.1, rbenv: 3.4.4) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="uri (v1.0.0, rbenv: 3.4.4) [gem]" level="application" />
   </component>
   <component name="RakeTasksCache">
     <option name="myRootTask">
