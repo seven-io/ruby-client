@@ -1,0 +1,24 @@
+#!/bin/sh
+# Generate CHANGELOG and stage it before committing
+
+# Resolve repo root just in case the hook is invoked from a subdirectory
+REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null)"
+if [ -z "$REPO_ROOT" ]; then
+  echo "pre-commit: not a git repository?"
+  exit 0
+fi
+cd "$REPO_ROOT" || exit 0
+
+# Run the rake task; prefer bundler if available
+if command -v bundle >/dev/null 2>&1; then
+  bundle exec rake changelog
+else
+  rake changelog
+fi
+
+# Stage the generated file if present
+if [ -f "CHANGELOG.md" ]; then
+  git add CHANGELOG.md
+fi
+
+exit 0

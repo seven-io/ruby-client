@@ -1,4 +1,4 @@
-<img src="https://www.seven.io/wp-content/uploads/Logo.svg" width="250" />
+<img alt="" src="https://www.seven.io/wp-content/uploads/Logo.svg" width="250" />
 
 # Official Ruby Client for [seven.io](https://www.seven.io/)
 This gem requires Ruby >= 3.1.0.
