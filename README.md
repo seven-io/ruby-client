@@ -9,18 +9,52 @@ This gem requires Ruby >= 3.1.0.
 
 ### Usage
 
-#### Retrieve balance
+#### Basic Usage
 
 ```ruby
 require 'seven_api/client'
 
 api_key = ENV['SEVEN_API_KEY']
-# retrieve balance
-puts SevenApi::Resources::Balance.new(api_key).retrieve
 
-# send SMS
-puts SevenApi::Resources::Sms.new(api_key).retrieve
+# Using individual resources
+balance = SevenApi::Resources::Balance.new(api_key).retrieve
+puts balance
+
+# Send SMS
+sms_result = SevenApi::Resources::Sms.new(api_key).retrieve({ 
+  text: 'Hello World', 
+  to: '1234567890' 
+})
+puts sms_result
+
+# Using the client (recommended)
+client = SevenApi::Client.new(api_key)
+puts client.Balance.retrieve
+puts client.Sms.retrieve({ text: 'Hello World', to: '1234567890' })
 ```
+
+#### HMAC Request Signing
+
+For enhanced security, you can enable HMAC-SHA256 request signing:
+
+```ruby
+require 'seven_api/client'
+
+api_key = ENV['SEVEN_API_KEY']
+signing_secret = ENV['SEVEN_SIGNING_SECRET']
+
+# Using individual resources with HMAC
+sms = SevenApi::Resources::Sms.new(api_key, 'ruby', signing_secret)
+result = sms.retrieve({ text: 'Hello World', to: '1234567890' })
+
+# Using the client with HMAC (recommended)
+client = SevenApi::Client.new(api_key, 'ruby', signing_secret)
+result = client.Sms.retrieve({ text: 'Hello World', to: '1234567890' })
+```
+
+When HMAC signing is enabled, each request includes:
+- `X-Timestamp`: Unix timestamp of the request
+- `X-Signature`: HMAC-SHA256 signature of the request data
 
 #### Testing
 

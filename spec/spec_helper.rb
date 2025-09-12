@@ -15,7 +15,7 @@ class Helper
 
   # @param resource [Class<SevenApi::Resource>]
   def initialize(resource)
-    @resource = resource.new(ENV['SEVEN_API_KEY'], 'ruby-test')
+    @resource = resource.new(ENV['SEVEN_API_KEY'], 'ruby-test', ENV['SEVEN_SIGNING_SECRET'])
 
     unless Helper::IS_HTTP
       @stubs = Faraday::Adapter::Test::Stubs.new

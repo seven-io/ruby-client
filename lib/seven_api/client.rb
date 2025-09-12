@@ -18,12 +18,14 @@ require 'seven_api/util'
 
 module SevenApi
   class Client
-    # @param resource [SevenApi::Resource]
-    def initialize(resource)
+    # @param api_key [String] the API key for authentication
+    # @param sent_with [String] the client identifier (default: 'ruby')
+    # @param signing_secret [String] optional HMAC secret for request signing
+    def initialize(api_key, sent_with = 'ruby', signing_secret = nil)
       SevenApi::Util::get_namespace_classes(SevenApi::Resources).each do |cls|
         name = cls.name.split('::').last
 
-        instance_variable_set("@#{name}", cls.new(resource))
+        instance_variable_set("@#{name}", cls.new(api_key, sent_with, signing_secret))
 
         singleton_class.instance_eval("attr_reader :#{name}")
       end
